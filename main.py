@@ -15,7 +15,7 @@ app = Flask(__name__)
 def home():  # put application's code here
     if request.method == "POST":
         search_string = request.form["nm"]
-        #print (search_string)
+        print (search_string)
         search_result = dbpedia.search(search_string)
 
         #return redirect(url_for("user", usr=search_result))
