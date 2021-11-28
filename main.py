@@ -1,4 +1,8 @@
+
 from flask import Flask, redirect, url_for, render_template, request
+
+import dbpedia
+import test
 
 app = Flask(__name__)
 
@@ -11,8 +15,11 @@ app = Flask(__name__)
 def home():  # put application's code here
     if request.method == "POST":
         search_string = request.form["nm"]
-        print (search_string)
-        return redirect(url_for("user", usr=search_string))
+        #print (search_string)
+        search_result = dbpedia.search(search_string)
+
+        #return redirect(url_for("user", usr=search_result))
+        return f"<h1>{search_result}</h1>"
     else:
         return render_template("searchbar.html")
 
