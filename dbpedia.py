@@ -1,26 +1,26 @@
-
 from rdflib import Graph
 from SPARQLWrapper import SPARQLWrapper, JSON, N3
 import pandas as pd
 
 sparql = SPARQLWrapper('https://dbpedia.org/sparql')
 
-#data = data.drop(columns = 'ID')
+
+# data = data.drop(columns = 'ID')
 
 
 # extraction of names of Applications/Devices/Infrastrcture which are running or planned from the excel
 # in liste "Name" dürfen nur softwares die runnning or planning no devises.
 # import service catalog from github
 # path = "https://raw.githubusercontent.com/Giuliano99/HTI/main/IT%20Service%20Katalog.xlsx"
-#path = 'IT Service Katalog.csv'
-#path1 = 'uri.csv'
+# path = 'IT Service Katalog.csv'
+# path1 = 'uri.csv'
 def create_dataframe(path, path1):
-    data = pd.read_csv(path, sep = ';')
+    data = pd.read_csv(path, sep=';')
     df4 = data
-    #clean dataset
+    # clean dataset
     df4 = df4.rename(columns={'Service Status': 'ServiceStatus'})
     df4 = df4.rename(columns={'Service Type': 'ServiceType'})
-    #print(df4)
+    # print(df4)
     # drop all unnecesary columns
     df4 = df4[df4.ServiceStatus != 'Canceled']
     df4 = df4[df4.ServiceStatus != 'Retired']
@@ -30,29 +30,38 @@ def create_dataframe(path, path1):
     existing_solutions = df4['Name']
     df4 = df4.set_index('Name')
 
-    #Combine with manually searched Uris 
+    # Combine with manually searched Uris
     uri = pd.read_csv(path1, sep=';')
     uri = uri.set_index('Name')
     df5 = pd.concat([df4, uri], axis=1, sort=False)
     return df5
 
-df = create_dataframe(r'C:\Users\Jakob\Documents\GitHub\HTI\IT Service Katalog.csv', r'C:\Users\Jakob\Documents\GitHub\HTI\uri.csv')
+#
+# path_serviceCatalog = "https://raw.githubusercontent.com/Giuliano99/HTI/test/IT%20Service%20Katalog.csv"
+# path_uri = "https://raw.githubusercontent.com/Giuliano99/HTI/test/uri.csv"
+#
+# serviceCatalog = pd.read_csv(path_serviceCatalog)
+# uri = pd.read_csv(path_uri)
+
+#df = create_dataframe(serviceCatalog, uri)
+df = create_dataframe('IT Service Katalog.csv', 'uri.csv')
 df = df.reset_index(inplace=False)
-#print (df)
+
+
+# print (df)
 
 # extracting existing softwares
-#solutions_software = []
-#for name in existing_solutions:
+# solutions_software = []
+# for name in existing_solutions:
 #    solutions_software.append (name)
 
-#print (solutions_software)
-    
+# print (solutions_software)
 
 
 # Finding the URI and the real Name of the Application if it is on Wiki
 def append_DBpedia_uri(Names):
     columns = ['name_after', 'uri']
-    uris = pd.DataFrame(data=None, columns = columns)
+    uris = pd.DataFrame(data=None, columns=columns)
     global data
     # software = '?s1 a <http://dbpedia.org/ontology/Software>. ?s1 a <http://dbpedia.org/ontology/Software>.'
     for Name in Names:
@@ -77,12 +86,12 @@ def append_DBpedia_uri(Names):
             # print(qres1)
             try:
                 result = qres1['results']['bindings'][0]
-                link= result['uri']['value']
+                link = result['uri']['value']
             except:
                 # print (Name, 'nothing found')
                 link = ['NaN']
         except:
-            print (Name ,'quiere wrong!')
+            print(Name, 'quiere wrong!')
             link = ['NaN']
 
         # print(link.count('/'))
@@ -101,7 +110,7 @@ def append_DBpedia_uri(Names):
 # print(df2)
 
 # uris which had do be search manually
-#print(df5)
+# print(df5)
 
 
 # export excel for checking and improve names
@@ -116,14 +125,13 @@ def append_DBpedia_uri(Names):
 def search(keyword, Dataframe):
     search = '|'.join(keyword)
     searched = Dataframe.loc[Dataframe['Description'].str.contains(search, na=False)].copy()
-    searched['sum'] = searched['Description'].str.contains(search, regex=False).astype(int) +\
-                            searched['Name'].str.contains(search, regex=False).astype(int) +\
-                            searched['IT Category'].str.contains(search, regex=False).astype(int)+\
-                            searched['ApplicationCategory'].str.contains(search, regex=False).astype(int)
-    ranked_search = searched.sort_values( "sum", ascending= False)
+    searched['sum'] = searched['Description'].str.contains(search, regex=False).astype(int) + \
+                      searched['Name'].str.contains(search, regex=False).astype(int) + \
+                      searched['IT Category'].str.contains(search, regex=False).astype(int) + \
+                      searched['ApplicationCategory'].str.contains(search, regex=False).astype(int)
+    ranked_search = searched.sort_values("sum", ascending=False)
     ranked_search = ranked_search.reset_index(inplace=False)
     return ranked_search
-
 
 
 print(search(['BIM'], df))

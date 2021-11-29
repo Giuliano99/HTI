@@ -6,7 +6,15 @@ import test
 
 app = Flask(__name__)
 
-df = dbpedia.create_dataframe(r'C:\Users\Jakob\Documents\GitHub\HTI\IT Service Katalog.csv', r'C:\Users\Jakob\Documents\GitHub\HTI\uri.csv')
+#
+# path_serviceCatalog = "https://raw.githubusercontent.com/Giuliano99/HTI/test/IT%20Service%20Katalog.csv"
+# path_uri = "https://raw.githubusercontent.com/Giuliano99/HTI/test/uri.csv"
+#
+# serviceCatalog = pd.read_csv(path_serviceCatalog)
+# uri = pd.read_csv(path_uri)
+
+#df = create_dataframe(serviceCatalog, uri)
+df = dbpedia.create_dataframe('IT Service Katalog.csv', 'uri.csv')
 df = df.reset_index(inplace=False)
 
 
@@ -20,6 +28,8 @@ def home():  # put application's code here
         search_string = request.form["nm"]
         #print (search_string)
         search_result = dbpedia.search([search_string], df)
+        search_result = search_result
+
 
         return redirect(url_for("user", usr = search_result.loc[0:5]['Name']))
         return f"<h1>{search_result}</h1>"
