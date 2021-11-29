@@ -5,9 +5,6 @@ import pandas as pd
 
 sparql = SPARQLWrapper('https://dbpedia.org/sparql')
 
-path = 'IT Service Katalog.csv'
-
-data = pd.read_csv(path, sep = ';')
 #data = data.drop(columns = 'ID')
 
 
@@ -15,26 +12,41 @@ data = pd.read_csv(path, sep = ';')
 # in liste "Name" dürfen nur softwares die runnning or planning no devises.
 # import service catalog from github
 # path = "https://raw.githubusercontent.com/Giuliano99/HTI/main/IT%20Service%20Katalog.xlsx"
-df4 = data
+#path = 'IT Service Katalog.csv'
+#path1 = 'uri.csv'
+def create_dataframe(path, path1):
+    data = pd.read_csv(path, sep = ';')
+    df4 = data
+    #clean dataset
+    df4 = df4.rename(columns={'Service Status': 'ServiceStatus'})
+    df4 = df4.rename(columns={'Service Type': 'ServiceType'})
+    #print(df4)
+    # drop all unnecesary columns
+    df4 = df4[df4.ServiceStatus != 'Canceled']
+    df4 = df4[df4.ServiceStatus != 'Retired']
+    df4 = df4[df4.ServiceStatus != 'Retiring']
+    df4 = df4[df4.ServiceType != 'Devices']
+    df4 = df4[df4.ServiceType != 'Infrastructure']
+    existing_solutions = df4['Name']
+    df4 = df4.set_index('Name')
 
-df4 = df4.rename(columns={'Service Status': 'ServiceStatus'})
-df4 = df4.rename(columns={'Service Type': 'ServiceType'})
-# drop all unnecesary columns
-df4 = df4[df4.ServiceStatus != 'Canceled']
-df4 = df4[df4.ServiceStatus != 'Retired']
-df4 = df4[df4.ServiceStatus != 'Retiring']
-df4 = df4[df4.ServiceType != 'Devices']
-df4 = df4[df4.ServiceType != 'Infrastructure']
-existing_solutions = df4['Name']
+    #Combine with manually searched Uris 
+    uri = pd.read_csv(path1, sep=';')
+    uri = uri.set_index('Name')
+    df5 = pd.concat([df4, uri], axis=1, sort=False)
+    return df5
+
+df = create_dataframe(r'C:\Users\Jakob\Documents\GitHub\HTI\IT Service Katalog.csv', r'C:\Users\Jakob\Documents\GitHub\HTI\uri.csv')
+df = df.reset_index(inplace=False)
+#print (df)
 
 # extracting existing softwares
-solutions_software = []
-for name in existing_solutions:
-    solutions_software.append (name)
+#solutions_software = []
+#for name in existing_solutions:
+#    solutions_software.append (name)
 
 #print (solutions_software)
-df4 = df4.set_index('Name')
-df5 = df4
+    
 
 
 # Finding the URI and the real Name of the Application if it is on Wiki
@@ -89,11 +101,6 @@ def append_DBpedia_uri(Names):
 # print(df2)
 
 # uris which had do be search manually
-path1 = 'uri.csv'
-
-uri = pd.read_csv(path1, sep=';')
-uri = uri.set_index('Name')
-df5 = pd.concat([df5, uri], axis=1, sort=False)
 #print(df5)
 
 
@@ -106,17 +113,20 @@ df5 = pd.concat([df5, uri], axis=1, sort=False)
 # need to be case insensitive
 # should count every substring
 # if it can't find something in the catalog it should search in dbpedia
-def search(keyword):
+def search(keyword, Dataframe):
     search = '|'.join(keyword)
-    searched = df5[df5['Description'].str.contains(search, na=False)]
-    searched['sum'] = df5.apply(lambda x: x.str.contains(search), axis=1).sum(axis=1)
-    # searched = searched.set_index('sum')
-    ranked_search = searched.sort_values("sum", ascending=False)
-    temp= ranked_search['ServiceID']
-    return temp
+    searched = Dataframe.loc[Dataframe['Description'].str.contains(search, na=False)].copy()
+    searched['sum'] = searched['Description'].str.contains(search, regex=False).astype(int) +\
+                            searched['Name'].str.contains(search, regex=False).astype(int) +\
+                            searched['IT Category'].str.contains(search, regex=False).astype(int)+\
+                            searched['ApplicationCategory'].str.contains(search, regex=False).astype(int)
+    ranked_search = searched.sort_values( "sum", ascending= False)
+    ranked_search = ranked_search.reset_index(inplace=False)
+    return ranked_search
 
 
 
+print(search(['BIM'], df))
 
 # df6 = df5
 #
