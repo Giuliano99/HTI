@@ -28,11 +28,12 @@ def home():  # put application's code here
         search_string = request.form["nm"]
         #print (search_string)
         search_result = dbpedia.search([search_string], df)
-        search_result = search_result
 
 
-        return redirect(url_for("user", usr = search_result.loc[0:5]['Name']))
-        return f"<h1>{search_result}</h1>"
+        return render_template('searchresults.html', tables=[search_result.to_html(classes='data')], titles=search_result.columns.values)
+
+        #return redirect(url_for("user", usr = search_result.loc[0:5]['Name']))
+        #return f"<h1>{search_result}</h1>"
     else:
         return render_template("searchbar.html")
 

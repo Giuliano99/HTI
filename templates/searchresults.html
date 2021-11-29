@@ -5,16 +5,10 @@
     <title>Results</title>
 </head>
 <body>
-<table>
-  <tr>
-    <td>Software1</td>
-    <td>Link1</td>
-  </tr>
-  <tr>
-    <td>Software2</td>
-    <td>Link2</td>
-   </tr>
 
-</table>
+{% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+{% endfor %}
 </body>
 </html>

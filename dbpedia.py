@@ -131,7 +131,10 @@ def search(keyword, Dataframe):
                       searched['ApplicationCategory'].str.contains(search, regex=False).astype(int)
     ranked_search = searched.sort_values("sum", ascending=False)
     ranked_search = ranked_search.reset_index(inplace=False)
-    return ranked_search
+    out = ranked_search[['Name', 'IT Category', 'first_uri',  'Second_uri']]
+    #out.append (ranked_search['first_uri'])
+    #print(out)
+    return out
 
 
 print(search(['BIM'], df))
