@@ -2,6 +2,10 @@ from rdflib import Graph
 from SPARQLWrapper import SPARQLWrapper, JSON, N3
 import pandas as pd
 
+import ssl
+
+ssl._create_default_https_context = ssl._create_unverified_context
+
 sparql = SPARQLWrapper('https://dbpedia.org/sparql')
 
 
@@ -137,48 +141,43 @@ def search(keyword, Dataframe):
     return out
 
 
-print(search(['BIM'], df))
+#print(search(['BIM'], df))
 
-# df6 = df5
+df6 = df
+uri = df6.iloc[0]['first_uri']
+#print(uri)
 #
-# uri = df6.iloc[0]['first_uri']
-# #print(uri)
-#
-#
-# # Extraction of all data contained in dbpedia that can be used for our website in englisch for Softwares
-# # here the genre, abstract, and other important data should be added to the df
-# def append_DBpedia_data(df):
-#     for i in df.index:
-#         uri = df.iloc[i]['first_uri']
-#         sparql.setQuery(f'''
-#         SELECT *
-#         WHERE
-#         {{<{uri}> a ?o;
-#         dbo:genre ?genre ;
-#         dbo:abstract ?abstract ;
-#         rdfs:label ?label .
-#         FILTER (lang(?abstract) = 'en')
-#         FILTER (lang(?label) = 'en')
-#         }}''')
-#         sparql.setReturnFormat(JSON)
-#         # print (uri)
-#         qres2 = sparql.query().convert()
-#         #print(qres2)
-#
-#         for result in qres2['results']['bindings']:
-#             # print(result['object'])
-#
-#             genre, abstract, lable = result['genre']['value'], result['abstract']['value'], result['label']['value']
-#             #print(f'genre: {genre}\tAbstrect: {abstract}\tValue:{lable}')
-#             # if lang == 'en':
-#             # print(value)
-#
-#
-# #uris = ['http://dbpedia.org/resource/Zoom_(software)', 'http://dbpedia.org/resource/SAP_ERP']
-# test = df6.truncate(before=0, after=3)
-#
-# append_DBpedia_data(test)
-#
+# Extraction of all data contained in dbpedia that can be used for our website in englisch for Softwares
+# here the genre, abstract, and other important data should be added to the df
+def append_DBpedia_data(df):
+    for i in df.index:
+        uri = df.iloc[i]['first_uri']
+        sparql.setQuery(f'''
+        SELECT *
+        WHERE
+        {{<{uri}> a ?o;
+        dbo:genre ?genre ;
+        dbo:abstract ?abstract ;
+        rdfs:label ?label .
+        FILTER (lang(?abstract) = 'en')
+        FILTER (lang(?label) = 'en')
+        }}''')
+        sparql.setReturnFormat(JSON)
+        print (uri)
+        qres2 = sparql.query().convert()
+        print(qres2)
+        for result in qres2['results']['bindings']:
+            # print(result['object'])
+            genre, abstract, lable = result['genre']['value'], result['abstract']['value'], result['label']['value']
+            #print(f'genre: {genre}\tAbstrect: {abstract}\tValue:{lable}')
+            # if lang == 'en':
+            # print(value)
+#uris = ['http://dbpedia.org/resource/Zoom_(software)', 'http://dbpedia.org/resource/SAP_ERP']
+test = df6.truncate(before=0, after=3)
+print(test)
+
+append_DBpedia_data(test)
+
 # # check if result from DBpedia is existing in the service catalog
 #
 # test = 'SAP'
