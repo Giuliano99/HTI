@@ -1,13 +1,19 @@
-from rdflib import Graph
+from rdflib import Graph, Literal, RDF, URIRef
+from rdflib.namespace import FOAF , XSD
+import rdflib
 from SPARQLWrapper import SPARQLWrapper, JSON, N3
 import pandas as pd
+from rdflib import URIRef
 
 import ssl
-
 ssl._create_default_https_context = ssl._create_unverified_context
 
 sparql = SPARQLWrapper('https://dbpedia.org/sparql')
 
+
+my_url = "https://dbpedia.org/data/Microsoft_Teams.ttl"
+
+Graph.parse(my_url, format='ttl')
 
 # data = data.drop(columns = 'ID')
 
@@ -145,8 +151,10 @@ def search(keyword, Dataframe):
 
 df6 = df
 uri = df6.iloc[0]['first_uri']
-#print(uri)
-#
+
+
+
+
 # Extraction of all data contained in dbpedia that can be used for our website in englisch for Softwares
 # here the genre, abstract, and other important data should be added to the df
 def append_DBpedia_data(df):
@@ -174,9 +182,9 @@ def append_DBpedia_data(df):
             # print(value)
 #uris = ['http://dbpedia.org/resource/Zoom_(software)', 'http://dbpedia.org/resource/SAP_ERP']
 test = df6.truncate(before=0, after=3)
-print(test)
+#print(test)
 
-append_DBpedia_data(test)
+#append_DBpedia_data(test)
 
 # # check if result from DBpedia is existing in the service catalog
 #
