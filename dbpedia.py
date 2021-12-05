@@ -1,9 +1,7 @@
 from rdflib import Graph, Literal, RDF, URIRef
 from rdflib.namespace import FOAF , XSD
-import rdflib
 from SPARQLWrapper import SPARQLWrapper, JSON, N3
 import pandas as pd
-from rdflib import URIRef
 
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
@@ -13,7 +11,7 @@ sparql = SPARQLWrapper('https://dbpedia.org/sparql')
 
 my_url = "https://dbpedia.org/data/Microsoft_Teams.ttl"
 
-Graph.parse(my_url, format='ttl')
+Graph.parse(my_url)
 
 # data = data.drop(columns = 'ID')
 
