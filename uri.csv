@@ -1,6 +1,6 @@
 ﻿Name;second_name;first_uri;Second_uri
-SAP ERP;;http://dbpedia.org/resource/SAP_ERP.ttl;
-SEAL systems;;https://dbpedia.org/data/Enterprise_output_management.ttl;
+SAP ERP;;http://dbpedia.org/resource/SAP_ERP;
+SEAL systems;;https://dbpedia.org/data/Enterprise_output_management;
 OpenText ECM Suite;Enterprise-Content-Management;https://dbpedia.org/data/OpenText;https://dbpedia.org/data/Enterprise_content_management
 Intranet;;https://dbpedia.org/data/Intranet;
 Business Intelligence;Power BI;https://dbpedia.org/data/Microsoft_Power_BI;

@@ -1,9 +1,11 @@
 from networkx.algorithms.shortest_paths.weighted import johnson
+import numpy
 from rdflib import Graph, Literal, RDF, URIRef
 from rdflib.namespace import RDFS
 from SPARQLWrapper import SPARQLWrapper, JSON, N3
 import pandas as pd
 import rdflib
+import openpyxl
 
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
@@ -123,10 +125,7 @@ def append_DBpedia_uri(Names):
 # print(df5)
 
 
-# export excel for checking and improve names
 
-
-# df5.to_excel("output3.xlsx")
 
 # search in the dataframe
 # need to be case insensitive
@@ -159,30 +158,47 @@ def append_DBpedia_data(df):
     for i in df.index:
         g = Graph()
         uri = df.iloc[i]['first_uri']
-        print(uri)
-        #df['Abstract'] = 'NaN'
         try:
             g.parse(uri)
             for s, p, o in g:
+                #print(s, p , o)
                 if 'abstract' in p:
                     if g.objects(RDFS.label):
                         if o.language == 'en':
-                            print(s, p, o)
-                            df.loc[df.index[i], 'Abstract'] = str(o)
-                             
+                            #print(s, p, o)
+                            df.loc[df.index[i], 'Abstract_en'] = str(o)
+            for s, p, o in g:
+                if 'abstract' in p:
+                    if g.objects(RDFS.label):
+                        if o.language == 'de':
+                            #print(s, p, o)
+                            df.loc[df.index[i], 'Abstract_de'] = str(o)                 
+            for s, p, o in g:
+                if 'depiction' in p:
+                    if g.objects(RDFS.label):
+                        df.loc[df.index[i], 'Picture'] = str(o)
+            for s, p, o in g:
+                if 'genre' in p:
+                    if g.objects(RDFS.label):
+                        df.loc[df.index[i], 'Genre'] = str(o)
         except:
-            print('prase error')
+            df.loc[df.index[i], 'Abstract_en'] = numpy.nan
+            df.loc[df.index[i], 'Abstract_de'] = numpy.nan
+            df.loc[df.index[i], 'Picture'] = numpy.nan
+            df.loc[df.index[i], 'Genre'] = numpy.nan
+            print('prase error for', df.iloc[i]['Name'])
     return df
 
+test = df6.truncate(before=0, after=10)
 
-       
-#uris = ['http://dbpedia.org/resource/Zoom_(software)', 'http://dbpedia.org/resource/SAP_ERP']
-test = df6.truncate(before=0, after=3)
-#print(test)
+dbpdf = append_DBpedia_data(df)
+#print(dbpdf)
+dbpdf.to_excel("output.xlsx")
 
-print(append_DBpedia_data(test))
+data2 = pd.read_excel('output.xlsx', index_col=0)  
+print(data2)
 
-# # check if result from DBpedia is existing in the service catalog
+#check if result from DBpedia is existing in the service catalog
 #
 # test = 'SAP'
 #
@@ -208,47 +224,3 @@ print(append_DBpedia_data(test))
 # for index, value in existing_solutions.items():
 #     if value == company_name:
 #         existing = True
-#
-# #print(f"In service catalog: {existing}")
-#
-# sparql = SPARQLWrapper('https://dbpedia.org/sparql')
-# sparql.setQuery('''
-#     SELECT ?lable ?abstract ?genre ?image
-#     WHERE { dbr:Microsoft_Teams rdfs:label ?lable .
-#             dbr:Microsoft_Teams dbo:abstract ?abstract .
-#             dbr:Microsoft_Teams dbo:genre ?genre .
-#             dbr:Microsoft_Teams dbp:logo ?image.
-#             FILTER (lang(?lable) = 'en')
-#             FILTER (lang(?abstract) = 'en') }
-# ''')
-# sparql.setReturnFormat(JSON)
-# qres = sparql.query().convert()
-#
-# #print(qres)
-# for result in qres['results']['bindings']:
-#     # print(result['object'])
-#
-#     lang, value, value2 = result['lable']['xml:lang'], result['abstract']['value'], result['genre']['value']
-#     #print(f'Lang: {lang}\tValue: {value}\tValue:{value2}')
-#     # if lang == 'en':
-#     # print(value)
-# sparql.setQuery(f'''
-#        SELECT *
-#        WHERE
-#        {{<{uri}> a ?o;
-#        dbo:genre ?genre ;
-#        dbo:abstract ?abstract ;
-#        rdfs:label ?label .
-#        FILTER (lang(?abstract) = 'en')
-#        FILTER (lang(?label) = 'en')
-#        }}''')
-#        sparql.setReturnFormat(JSON)
-#        print (uri)
-#        qres2 = sparql.query().convert()
-#        print(qres2)
-#        for result in qres2['results']['bindings']:
-#            # print(result['object'])
-#           genre, abstract, lable = result['genre']['value'], result['abstract']['value'], result['label']['value']
-            #print(f'genre: {genre}\tAbstrect: {abstract}\tValue:{lable}')
-            # if lang == 'en':
-            # print(value)
