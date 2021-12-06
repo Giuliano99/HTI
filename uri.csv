@@ -1,6 +1,6 @@
 ﻿Name;second_name;first_uri;Second_uri
 SAP ERP;;http://dbpedia.org/resource/SAP_ERP;
-SEAL systems;;https://dbpedia.org/page/Enterprise_output_management;
+SEAL systems;;https://dbpedia.org/data/Enterprise_output_management;
 OpenText ECM Suite;Enterprise-Content-Management;https://dbpedia.org/page/OpenText;https://dbpedia.org/page/Enterprise_content_management
 Intranet;;https://dbpedia.org/page/Intranet;
 Business Intelligence;Power BI;https://dbpedia.org/page/Microsoft_Power_BI;
@@ -12,7 +12,7 @@ MS Project - IT Project Mgmt.;;https://dbpedia.org/page/Microsoft_Project;
 MS Project - Ropeways Plan. LTN;;https://dbpedia.org/page/Microsoft_Project;
 MS Project - Ropeways Plan. Poma;;https://dbpedia.org/page/Microsoft_Project;
 Microsoft Visual Studio Prof.;Microsoft Visual Studio;https://dbpedia.org/page/Visual_Studio;
-SharePoint & Teams;Sharepoint;https://dbpedia.org/page/SharePoint;Microsoft Teams
+SharePoint & Teams;Sharepoint;https://dbpedia.org/resource/SharePoint;Microsoft Teams
 MoovApps Business process m. BPM;;;
 Teamviewer;TeamViewer;https://dbpedia.org/page/TeamViewer;
 Adobe Acrobat Standard DC;Adobe Acrobat;https://dbpedia.org/page/Adobe_Acrobat;
