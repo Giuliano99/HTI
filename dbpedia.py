@@ -137,7 +137,9 @@ def search(keyword, Dataframe):
     searched['sum'] = searched['Description'].str.contains(search, regex=False).astype(int) + \
                       searched['Name'].str.contains(search, regex=False).astype(int) + \
                       searched['IT Category'].str.contains(search, regex=False).astype(int) + \
-                      searched['ApplicationCategory'].str.contains(search, regex=False).astype(int)
+                      searched['ApplicationCategory'].str.contains(search, regex=False).astype(int)+ \
+                      searched['Abstract_en'].str.contains(search, regex=False).astype(int)+ \
+                      searched['Abstract_de'].str.contains(search, regex=False).astype(int)
     ranked_search = searched.sort_values("sum", ascending=False)
     ranked_search = ranked_search.reset_index(inplace=False)
     out = ranked_search[['Name', 'IT Category', 'first_uri',  'Second_uri']]
