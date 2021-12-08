@@ -1,1 +1,4 @@
 Flask==1.1.2
+gunicorn==20.0.4
+pandas==1.1.5
+xlrd==2.0.1

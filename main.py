@@ -2,7 +2,6 @@
 from flask import Flask, redirect, url_for, render_template, request
 
 import search
-import test
 import pandas as pd
 
 app = Flask(__name__)
@@ -17,7 +16,7 @@ app = Flask(__name__)
 #df = create_dataframe(serviceCatalog, uri)
 #df = dbpedia.create_dataframe('IT Service Katalog.csv', 'uri.csv')
 #df = df.reset_index(inplace=False)
-data2 = pd.read_excel('output.xlsx', index_col=0) 
+data2 = pd.read_excel('output.xls', index_col=0)
 df = data2
 #@app.route('/')
 #def home():  # put application's code here
@@ -33,7 +32,6 @@ def home():  # put application's code here
         return render_template('results 2.0.html', column_names=search_result.columns.values,
                                row_data=list(search_result.values.tolist()), link_column="first_uri", zip=zip)
 
-        return render_template('searchresults.html', tables=[search_result.to_html(classes='data')], titles=search_result.columns.values)
 
         #return redirect(url_for("user", usr = search_result.loc[0:5]['Name']))
         #return f"<h1>{search_result}</h1>"
