@@ -1,16 +1,13 @@
-from networkx.algorithms.shortest_paths.weighted import johnson
-import numpy
 from rdflib import Graph, Literal, RDF, URIRef
 from rdflib.namespace import RDFS
-from SPARQLWrapper import SPARQLWrapper, JSON, N3
+#from SPARQLWrapper import SPARQLWrapper, JSON, N3
 import pandas as pd
-import rdflib
-import openpyxl
+
 
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
 
-sparql = SPARQLWrapper('https://dbpedia.org/sparql')
+#sparql = SPARQLWrapper('https://dbpedia.org/sparql')
 
 
     
@@ -71,49 +68,49 @@ df = df.reset_index(inplace=False)
 
 
 # Finding the URI and the real Name of the Application if it is on Wiki
-def append_DBpedia_uri(Names):
-    columns = ['name_after', 'uri']
-    uris = pd.DataFrame(data=None, columns=columns)
-    global data
-    # software = '?s1 a <http://dbpedia.org/ontology/Software>. ?s1 a <http://dbpedia.org/ontology/Software>.'
-    for Name in Names:
-        sparql.setQuery(f'''
-      define input:ifp "IFP_OFF"  select ?s1 as ?uri, (bif:search_excerpt (bif:vector ('{Name}'), ?o1)) as ?search, ?sc, ?rank, ?g 
-      where {{{{ select ?s1, (?sc * 3e-1) as ?sc, ?o1, (sql:rnk_scale (<LONG::IRI_RANK> (?s1))) as ?rank, ?g where  
-  {{ 
-    quad map virtrdf:DefaultQuadMap 
-    {{ 
-      graph ?g 
-      {{ 
-        ?s1 ?s1textp ?o1 .
-        ?o1 bif:contains  '"{Name}"'  option (score ?sc)  .
-
-      }}
-    }}
-  }}
-  order by desc (?sc * 3e-1 + sql:rnk_scale (<LONG::IRI_RANK> (?s1)))  limit 1  offset 0 }}}}''')
-        sparql.setReturnFormat(JSON)
-        try:
-            qres1 = sparql.query().convert()
-            # print(qres1)
-            try:
-                result = qres1['results']['bindings'][0]
-                link = result['uri']['value']
-            except:
-                # print (Name, 'nothing found')
-                link = ['NaN']
-        except:
-            print(Name, 'quiere wrong!')
-            link = ['NaN']
-
-        # print(link.count('/'))
-        # x = link.split('/')
-        # URI = x[4]
-        df3 = pd.DataFrame({"name_after": [Name], "uri": [link]})
-        #
-        uris = uris.append(df3, ignore_index=True)
-        # print(Name, link)
-    return uris
+# def append_DBpedia_uri(Names):
+#     columns = ['name_after', 'uri']
+#     uris = pd.DataFrame(data=None, columns=columns)
+#     global data
+#     # software = '?s1 a <http://dbpedia.org/ontology/Software>. ?s1 a <http://dbpedia.org/ontology/Software>.'
+#     for Name in Names:
+#         sparql.setQuery(f'''
+#       define input:ifp "IFP_OFF"  select ?s1 as ?uri, (bif:search_excerpt (bif:vector ('{Name}'), ?o1)) as ?search, ?sc, ?rank, ?g
+#       where {{{{ select ?s1, (?sc * 3e-1) as ?sc, ?o1, (sql:rnk_scale (<LONG::IRI_RANK> (?s1))) as ?rank, ?g where
+#   {{
+#     quad map virtrdf:DefaultQuadMap
+#     {{
+#       graph ?g
+#       {{
+#         ?s1 ?s1textp ?o1 .
+#         ?o1 bif:contains  '"{Name}"'  option (score ?sc)  .
+#
+#       }}
+#     }}
+#   }}
+#   order by desc (?sc * 3e-1 + sql:rnk_scale (<LONG::IRI_RANK> (?s1)))  limit 1  offset 0 }}}}''')
+#         sparql.setReturnFormat(JSON)
+#         try:
+#             qres1 = sparql.query().convert()
+#             # print(qres1)
+#             try:
+#                 result = qres1['results']['bindings'][0]
+#                 link = result['uri']['value']
+#             except:
+#                 # print (Name, 'nothing found')
+#                 link = ['NaN']
+#         except:
+#             print(Name, 'quiere wrong!')
+#             link = ['NaN']
+#
+#         # print(link.count('/'))
+#         # x = link.split('/')
+#         # URI = x[4]
+#         df3 = pd.DataFrame({"name_after": [Name], "uri": [link]})
+#         #
+#         uris = uris.append(df3, ignore_index=True)
+#         # print(Name, link)
+#     return uris
 
 
 # versuch für Zoom und SAP

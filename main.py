@@ -38,7 +38,7 @@ def home():  # put application's code here
         #return redirect(url_for("user", usr = search_result.loc[0:5]['Name']))
         #return f"<h1>{search_result}</h1>"
     else:
-        return render_template("index.html")
+        return render_template("searchbar.html")
 
 
 
