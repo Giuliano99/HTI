@@ -3,6 +3,7 @@ from flask import Flask, redirect, url_for, render_template, request
 
 import dbpedia
 import test
+import pandas as pd
 
 app = Flask(__name__)
 
@@ -14,10 +15,10 @@ app = Flask(__name__)
 # uri = pd.read_csv(path_uri)
 
 #df = create_dataframe(serviceCatalog, uri)
-df = dbpedia.create_dataframe('IT Service Katalog.csv', 'uri.csv')
-df = df.reset_index(inplace=False)
-
-
+#df = dbpedia.create_dataframe('IT Service Katalog.csv', 'uri.csv')
+#df = df.reset_index(inplace=False)
+data2 = pd.read_excel('output.xlsx', index_col=0) 
+df = data2
 #@app.route('/')
 #def home():  # put application's code here
 #    return 'Hello World!'

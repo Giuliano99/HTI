@@ -134,21 +134,22 @@ def append_DBpedia_uri(Names):
 def search(keyword, Dataframe):
     search = '|'.join(keyword)
     searched = Dataframe.loc[Dataframe['Description'].str.contains(search, na=False)].copy()
-    searched['sum'] = searched['Description'].str.contains(search, regex=False).astype(int) + \
-                      searched['Name'].str.contains(search, regex=False).astype(int) + \
-                      searched['IT Category'].str.contains(search, regex=False).astype(int) + \
-                      searched['ApplicationCategory'].str.contains(search, regex=False).astype(int)+ \
-                      searched['Abstract_en'].str.contains(search, regex=False).astype(int)+ \
-                      searched['Abstract_de'].str.contains(search, regex=False).astype(int)
+    #searched = Dataframe
+    searched['sum'] = searched['Description'].str.contains(search, regex=False).astype(float) + \
+                      searched['Name'].str.contains(search, regex=False).astype(float) + \
+                      searched['IT Category'].str.contains(search, regex=False).astype(float) + \
+                      searched['ApplicationCategory'].str.contains(search, regex=False).astype(float)+ \
+                      searched['Abstract_en'].str.contains(search, regex=False).astype(float)+ \
+                      searched['Abstract_de'].str.contains(search, regex=False).astype(float)
     ranked_search = searched.sort_values("sum", ascending=False)
     ranked_search = ranked_search.reset_index(inplace=False)
-    out = ranked_search[['Name', 'IT Category', 'first_uri',  'Second_uri']]
+    out = ranked_search[['Name', 'IT Category', 'Description',  'Abstract_de']]
     #out.append (ranked_search['first_uri'])
     #print(out)
     return out
 
 
-#print(search(['BIM'], df))
+
 
 df6 = df
 uri = df6.iloc[0]['first_uri']
@@ -184,21 +185,23 @@ def append_DBpedia_data(df):
                     if g.objects(RDFS.label):
                         df.loc[df.index[i], 'Genre'] = str(o)
         except:
-            df.loc[df.index[i], 'Abstract_en'] = numpy.nan
-            df.loc[df.index[i], 'Abstract_de'] = numpy.nan
-            df.loc[df.index[i], 'Picture'] = numpy.nan
-            df.loc[df.index[i], 'Genre'] = numpy.nan
+            df.loc[df.index[i], 'Abstract_en'] = str('NaN')
+            df.loc[df.index[i], 'Abstract_de'] = str('NaN')
+            df.loc[df.index[i], 'Picture'] = str('NaN')
+            df.loc[df.index[i], 'Genre'] = str('NaN')
             print('prase error for', df.iloc[i]['Name'])
     return df
 
 test = df6.truncate(before=0, after=10)
 
-dbpdf = append_DBpedia_data(df)
+#dbpdf = append_DBpedia_data(df)
 #print(dbpdf)
-dbpdf.to_excel("output.xlsx")
+#dbpdf.to_excel("output.xlsx")
 
 data2 = pd.read_excel('output.xlsx', index_col=0)  
-print(data2)
+#print(data2)
+
+print(search(['SAP'], data2))
 
 #check if result from DBpedia is existing in the service catalog
 #
