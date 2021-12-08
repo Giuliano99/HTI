@@ -1,7 +1,7 @@
 
 from flask import Flask, redirect, url_for, render_template, request
 
-import dbpedia
+import search
 import test
 import pandas as pd
 
@@ -28,7 +28,7 @@ def home():  # put application's code here
     if request.method == "POST":
         search_string = request.form["nm"]
         #print (search_string)
-        search_result = dbpedia.search([search_string], df)
+        search_result = search.search([search_string], df)
 
         return render_template('results 2.0.html', column_names=search_result.columns.values,
                                row_data=list(search_result.values.tolist()), link_column="first_uri", zip=zip)
