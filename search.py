@@ -44,9 +44,9 @@ def search(keyword, Dataframe):
     except:
         print('pleas try another search')
     ranked_search = ranked_search.reset_index(inplace=False)
-    out = ranked_search[['Name', 'IT Category', 'Description',  'Abstract_de', 'sum']]
+    out = ranked_search[['Name', 'IT Category', 'Description',  'Abstract_en', 'sum']]
     return out
 
 
-print(search(['Remote'], data2))
+#print(search(['Remote'], data2))
 

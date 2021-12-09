@@ -165,16 +165,14 @@ def append_DBpedia_data(df):
             print('prase error for', df.iloc[i]['Name'])
     return df
 
-test = df6.truncate(before=0, after=10)
 
 #dbpdf = append_DBpedia_data(df)
 #print(dbpdf)
 #dbpdf.to_excel("output.xlsx")
 
-data2 = pd.read_excel('output.xlsx', index_col=0)  
+#data2 = pd.read_excel('output.xlsx', index_col=0)  
 #print(data2)
 
-print(search(['SAP'], data2))
 
 #check if result from DBpedia is existing in the service catalog
 #
