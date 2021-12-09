@@ -6,14 +6,14 @@ Intranet;;https://dbpedia.org/data/Intranet;
 Business Intelligence;Power BI;https://dbpedia.org/data/Microsoft_Power_BI;
 Microsoft Windows;;https://dbpedia.org/data/Microsoft_Windows;
 Microsoft Office;;https://dbpedia.org/data/Microsoft_Office;
-Microsoft Client & Rem. Access;;;
+Microsoft Client & Rem. Access;;https://dbpedia.org/data/Remote_desktop_software#RAT;
 Microsoft Project;;https://dbpedia.org/data/Microsoft_Project;
 MS Project - IT Project Mgmt.;;https://dbpedia.org/data/Microsoft_Project;
 MS Project - Ropeways Plan. LTN;;https://dbpedia.org/data/Microsoft_Project;
 MS Project - Ropeways Plan. Poma;;https://dbpedia.org/data/Microsoft_Project;
 Microsoft Visual Studio Prof.;Microsoft Visual Studio;https://dbpedia.org/data/Visual_Studio;
 SharePoint & Teams;Sharepoint;https://dbpedia.org/data/SharePoint;Microsoft Teams
-MoovApps Business process m. BPM;;;
+MoovApps Business process m. BPM;;https://dbpedia.org/data/Business_process_management;
 Teamviewer;TeamViewer;https://dbpedia.org/data/TeamViewer;
 Adobe Acrobat Standard DC;Adobe Acrobat;https://dbpedia.org/data/Adobe_Acrobat;
 Nitro Software;;http://dbpedia.org/resource/Nitro_Pro;
@@ -23,9 +23,9 @@ Adobe Photoshop;;http://dbpedia.org/resource/Adobe_Photoshop_Elements;
 Redmine Project management software;Redmine;https://dbpedia.org/data/Redmine;
 Adobe Illustrator;;http://dbpedia.org/resource/Adobe_Illustrator_Artwork;
 Adobe Creative Cloud;;http://dbpedia.org/resource/Adobe_Creative_Cloud;
-Archiving ARXivar/IXCE;;;
-Proffix;;;
-Interview;;;
+Archiving ARXivar/IXCE;;https://dbpedia.org/data/Digital_asset_management;
+Proffix;;https://dbpedia.org/data/Enterprise_resource_planning;
+Interview;;https://dbpedia.org/data/Survey_data_collection;
 Pass'IN Digital certificates;Imprimerie_nationale;https://dbpedia.org/data/Imprimerie_nationale;
 COGEP GuideTI;Computerized_maintenance_management_system;https://dbpedia.org/data/Computerized_maintenance_management_system;
 OTRS for building maintenance;OTRS;https://dbpedia.org/data/OTRS;https://dbpedia.org/data/Issue_tracking_system
@@ -41,26 +41,26 @@ Odoo ERP;Odoo;https://dbpedia.org/data/Odoo;
 Visioaxess Visitor Management;;https://dbpedia.org/data/Visitor_management;
 4ward Phonecall Management;Call_management;https://dbpedia.org/data/Call_management;
 Wrike Project Management;Wrike;https://dbpedia.org/data/Wrike;
-Lasernet Label Management;;;
-ACRON data archive;;;
-Easescreen;;;
-Antidote;;;
+Lasernet Label Management;;https://dbpedia.org/data/Enterprise_output_management;
+ACRON data archive;;https://dbpedia.org/data/Building_management_system;
+Easescreen;;https://dbpedia.org/data/Digital_signage;
+Antidote;;https://dbpedia.org/data/Computer-assisted_translation;
 TechSmith Camtasia;Camtasia;https://dbpedia.org/data/Camtasia;
 Avrios Fleet management software;Fleet_management_software;https://dbpedia.org/data/Fleet_management_software;
 DocuSign Electronic Signature;Electronic_signature;https://dbpedia.org/data/Electronic_signature;
-Carrier Security Mgmt. Software ATS8600;;;
+Carrier Security Mgmt. Software ATS8600;;https://dbpedia.org/data/Building_management_system;
 Microsoft Power Apps & Automate;Microsoft_Power_Platform;https://dbpedia.org/data/Microsoft_Power_Platform;
 Zoom;Zoom software;https://dbpedia.org/data/Zoom_(software);
 Corporate Performance Mgmt (CPM);Business_performance_management;https://dbpedia.org/data/Business_performance_management;
 Piteco;Treasury_management_system;https://dbpedia.org/data/Treasury_management_system;
-Etafi;;;
-Viareport Conso&Report;;;
+Etafi;;https://dbpedia.org/data/Accounting;
+Viareport Conso&Report;;https://dbpedia.org/data/Consolidated_financial_statement;
 Concur;SAP_Concur;https://dbpedia.org/data/SAP_Concur;
 SuccessFactors;SAP_SuccessFactors;https://dbpedia.org/data/SAP_SuccessFactors;
 Atoss Access Management;;https://dbpedia.org/data/Identity_management;
 Atoss Time Management;;https://dbpedia.org/data/Time_and_attendance;
 Notilus;;https://dbpedia.org/data/Expense_management;
-Protime;;;
+Protime;;https://dbpedia.org/data/Time_and_attendance;
 Chubb Director;;https://dbpedia.org/data/Access_control#Computer_security;
 Consens Time recording;;https://dbpedia.org/data/Time_and_attendance;
 Sage payroll and payment software;;https://dbpedia.org/data/Payment_system;
@@ -69,7 +69,7 @@ Talentry;;https://dbpedia.org/data/Talent_management_system;
 Ceridian payroll system;;https://dbpedia.org/data/Ceridian;https://dbpedia.org/data/Payroll
 Timetracker;Time-tracking_software;https://dbpedia.org/data/Time-tracking_software;
 Access It!;;https://dbpedia.org/data/Computer_access_control;
-Keso Access Management;;;
+Keso Access Management;;https://dbpedia.org/data/Computer_access_control;
 ADP Decidium;;https://dbpedia.org/data/ADP_(company);
 Software for On- and Offboarding;;https://dbpedia.org/data/Employee_offboarding;https://dbpedia.org/data/Onboarding
 Customer Relationship Mgmt (CRM);;https://dbpedia.org/data/Customer-Relationship-Management#CRM-Systeme;
@@ -80,7 +80,7 @@ MediaValet Digital Asset Mgmt.;;https://dbpedia.org/data/Digital_asset_managemen
 Mailchimp email marketing software;;https://dbpedia.org/data/Digital_asset_management;https://dbpedia.org/data/Mailchimp
 Mobile Service (App);;https://dbpedia.org/data/Operations_management;
 Calem;;https://dbpedia.org/data/Computerized_maintenance_management_system;
-OMCET;;;
+OMCET;;https://dbpedia.org/data/Software_calculator;
 CSM - Warranty Tool;;maby clam managment?;
 Optimiza;;https://dbpedia.org/data/Supply_chain_management#Digitalisierung;
 JMP;;https://dbpedia.org/data/Data_analysis;https://dbpedia.org/data/JMP_(statistical_software)
@@ -95,7 +95,7 @@ Tesi Transport Mgmt System (TMS);;https://dbpedia.org/data/Transportation_manage
 Tesi Supply Chain Management (SCM);;https://dbpedia.org/data/Supply_chain_management#Digitalisierung;
 Atoss Staff Planning;;https://dbpedia.org/data/Shift_plan;
 NX CAM;;https://dbpedia.org/data/Computer-aided_manufacturing;
-Asix;;;
+Asix;;https://dbpedia.org/data/Human_resource_management;
 Paratox;;https://dbpedia.org/data/Regulatory_compliance;
 Fire alarm system software;;https://dbpedia.org/data/Fire_alarm_system;
 IMC Studio;;https://dbpedia.org/data/Measurement;
@@ -103,11 +103,11 @@ Catman;;https://dbpedia.org/data/Measurement;
 Logging Software Bruel&Kjaer;;https://dbpedia.org/data/Measurement;
 Cloos RoboPlan professional;;https://dbpedia.org/data/Industrial_robot;
 Kardex;;https://dbpedia.org/data/Kardex_Group;
-ecoRegS;;;
+ecoRegS;;https://dbpedia.org/data/Warehouse_management_system;
 OTRS for planning department (PLO);;https://dbpedia.org/data/OTRS;https://dbpedia.org/data/Service_management
 Zoller Tool Management solutions;;https://dbpedia.org/data/Tool_management;
 Topflow Machine data collection (MDC);;https://dbpedia.org/data/Data_collection_system;
-iAuditor;;;
+iAuditor;;https://dbpedia.org/data/Adobe_Audition;
 Atlas Copco Work Vision;;https://dbpedia.org/data/Atlas_Copco;
 ATLAS Customs declaration programme;;https://dbpedia.org/data/Export#Barriers;
 IPO.Log;;https://dbpedia.org/data/Automated_planning_and_scheduling;https://dbpedia.org/data/Computer_simulation
@@ -119,7 +119,7 @@ VERICUT Manufacturing software;;https://dbpedia.org/data/Vericut;
 Per Angusta Procurement Management;;https://dbpedia.org/data/Supply_chain_management#Digitalisierung;
 Hilti ON!Track Asset Management;;https://dbpedia.org/data/Field_inventory_management;
 Modula WMS;;https://dbpedia.org/data/Warehouse_management_system;
-AlmaCam Cut;;;
+AlmaCam Cut;;https://dbpedia.org/data/Computer-aided_manufacturing;
 Minitab;;https://dbpedia.org/data/Minitab;
 ELAM Software;;https://dbpedia.org/data/Process_control;
 Trumpf TruTops;;https://dbpedia.org/data/Computer-aided_design;
@@ -128,9 +128,9 @@ Manufacturing Execution System Prinoth;;https://dbpedia.org/data/Manufacturing_e
 Comara sysCut;;https://dbpedia.org/data/Process_development_execution_system;
 Teamcenter & T4S;;https://dbpedia.org/data/Product_life-cycle_management_(marketing);
 Across;;https://dbpedia.org/data/Across_Language_Server;
-IAO;;;
-WINSIF;;;
-Cortona 3D;;;
+IAO;;https://dbpedia.org/data/Computer-aided_design;
+WINSIF;;https://dbpedia.org/data/Computer-aided_design;
+Cortona 3D;;https://dbpedia.org/data/Computer-aided_design;
 NX;;https://dbpedia.org/data/Computer-aided_design;
 Catia;;https://dbpedia.org/data/Computer-aided_design;
 Allplan;;https://dbpedia.org/data/Building_information_modeling;
@@ -139,7 +139,7 @@ Matlab;;http://dbpedia.org/resource/MATLAB;
 Bladed;;https://dbpedia.org/data/Computer-aided_engineering;https://dbpedia.org/data/Wind_energy_software
 Catalog Creator;;https://dbpedia.org/data/Information_system;
 Windographer;;https://dbpedia.org/data/Measurement;https://dbpedia.org/data/Wind_energy_software
-Straus;;;
+Straus;;https://dbpedia.org/data/Computer-aided_engineering;
 FE-UX Weldfat;;https://dbpedia.org/data/Evaluation;https://dbpedia.org/data/Welding
 Meteodyn WT;;http://dbpedia.org/resource/Meteodyn_WT;
 Spatial Manager for AutoCAD;;https://dbpedia.org/data/Spatial_file_manager;https://dbpedia.org/data/AutoCAD
@@ -157,7 +157,7 @@ Arbortext IsoDraw;;https://dbpedia.org/data/Computer-aided_design;https://dbpedi
 Solidworks;;https://dbpedia.org/data/SolidWorks;https://dbpedia.org/data/Computer-aided_design
 Automation Studio;;http://dbpedia.org/resource/Automation_Studio;https://dbpedia.org/data/Computer-aided_design
 Autodesk Autocad Mechanical;;https://dbpedia.org/data/AutoCAD;https://dbpedia.org/data/Computer-aided_manufacturing
-AdFer;;;
+AdFer;;https://dbpedia.org/data/Computer-aided_design;
 VisMockUp;;https://dbpedia.org/data/Digital_mockup;
 AMESIM;;https://dbpedia.org/data/Simcenter_Amesim;
 Kubotek KeyCreator;;https://dbpedia.org/data/KeyCreator;
@@ -170,7 +170,7 @@ APIS IQ FMEA;;https://dbpedia.org/data/Failure_mode_and_effects_analysis;
 Autodesk AEC collection;;https://dbpedia.org/data/Autodesk_Revit;
 Patsnap Patent Management;;https://dbpedia.org/data/Intellectual_property;
 SCIA Concrete Section (BIM);;https://dbpedia.org/data/Building_information_modeling;
-OROS NVGate Spectrum Analyzer;;;
+OROS NVGate Spectrum Analyzer;;https://dbpedia.org/data/Measurement;
 ANSYS;;https://dbpedia.org/data/Ansys;
 Siemens Plant Simulation;;https://dbpedia.org/data/Plant_Simulation;
 Autodesk BIM 360;;https://dbpedia.org/data/Building_information_modeling;https://dbpedia.org/data/Autodesk_Revit
