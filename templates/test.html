@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dropdown</title>
+</head>
+<body>
+<select name="categories" method="GET" action="/">
+  <option value="{{categories[0]}}" selected>{{categories[0]}}</option>
+  {% for category in categories[1:] %}
+    <option value="{{category}}">{{category}}</option>
+  {% endfor %}
+</select>
+<form action="#" method="post">
+    <p>Search for Software:
+    <input type = "text" name="nm" /></p>
+    <p><input type = "submit" value="submit" /></p>
+</form>
+
+</body>
+</html>
