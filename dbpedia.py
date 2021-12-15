@@ -12,13 +12,7 @@ ssl._create_default_https_context = ssl._create_unverified_context
 
 sparql = SPARQLWrapper('https://dbpedia.org/sparql')
 
-
-    
-
-
-
 # data = data.drop(columns = 'ID')
-
 
 # extraction of names of Applications/Devices/Infrastrcture which are running or planned from the excel
 # in liste "Name" dürfen nur softwares die runnning or planning no devises.
@@ -48,27 +42,9 @@ def create_dataframe(path, path1):
     df5 = pd.concat([df4, uri], axis=1, sort=False)
     return df5
 
-#
-# path_serviceCatalog = "https://raw.githubusercontent.com/Giuliano99/HTI/test/IT%20Service%20Katalog.csv"
-# path_uri = "https://raw.githubusercontent.com/Giuliano99/HTI/test/uri.csv"
-#
-# serviceCatalog = pd.read_csv(path_serviceCatalog)
-# uri = pd.read_csv(path_uri)
-
-#df = create_dataframe(serviceCatalog, uri)
 df = create_dataframe('IT Service Katalog.csv', 'uri.csv')
 df = df.reset_index(inplace=False)
-
-
-# print (df)
-
-# extracting existing softwares
-# solutions_software = []
-# for name in existing_solutions:
-#    solutions_software.append (name)
-
-# print (solutions_software)
-
+#print (df)
 
 # Finding the URI and the real Name of the Application if it is on Wiki
 def append_DBpedia_uri(Names):
@@ -121,12 +97,6 @@ def append_DBpedia_uri(Names):
 # solutions_software = ['SAP ERP', 'SEAL systems', 'OpenText ECM', 'Intranet', 'Business Intelligence', 'Microsoft Windows', 'Microsoft Office']
 # print(df2)
 
-# uris which had do be search manually
-# print(df5)
-
-df6 = df
-uri = df6.iloc[0]['first_uri']
-
 
 # Extraction of all data contained in dbpedia that can be used for our website in englisch for Softwares
 # here the genre, abstract, and other important data should be added to the df
@@ -148,7 +118,19 @@ def append_DBpedia_data(df):
                     if g.objects(RDFS.label):
                         if o.language == 'de':
                             #print(s, p, o)
-                            df.loc[df.index[i], 'Abstract_de'] = str(o)                 
+                            df.loc[df.index[i], 'Abstract_de'] = str(o) 
+            for s, p, o in g:
+                if 'abstract' in p:
+                    if g.objects(RDFS.label):
+                        if o.language == 'it':
+                            #print(s, p, o)
+                            df.loc[df.index[i], 'Abstract_it'] = str(o)
+            for s, p, o in g:
+                if 'abstract' in p:
+                    if g.objects(RDFS.label):
+                        if o.language == 'fr':
+                            #print(s, p, o)
+                            df.loc[df.index[i], 'Abstract_fr'] = str(o)                
             for s, p, o in g:
                 if 'depiction' in p:
                     if g.objects(RDFS.label):
@@ -160,18 +142,50 @@ def append_DBpedia_data(df):
         except:
             df.loc[df.index[i], 'Abstract_en'] = str('NaN')
             df.loc[df.index[i], 'Abstract_de'] = str('NaN')
+            df.loc[df.index[i], 'Abstract_it'] = str('NaN')
+            df.loc[df.index[i], 'Abstract_fr'] = str('NaN')
             df.loc[df.index[i], 'Picture'] = str('NaN')
             df.loc[df.index[i], 'Genre'] = str('NaN')
             print('prase error for', df.iloc[i]['Name'])
     return df
 
-
 #dbpdf = append_DBpedia_data(df)
+
 #print(dbpdf)
 #dbpdf.to_excel("output.xlsx")
 
-#data2 = pd.read_excel('output.xlsx', index_col=0)  
+data2 = pd.read_excel('output.xlsx', index_col=0)  
 #print(data2)
+
+#choose language for abstract
+def choose_language(df, Name, label):
+    df = df.loc[df['Name'] == Name]
+    df = df.set_index('Name')
+    comment = None
+    if label == 'en':
+        x =  df.loc[Name]['Abstract_en']
+        if x == 'NaN' or x != str():
+            comment ='Sorry, the English abstract is not available.'
+            x =  df.loc[Name]['Description']
+    if label == 'de':
+        x =  df.loc[Name]['Abstract_de']
+        if x == 'NaN'or x != str():
+            comment = 'Die Deutsche Kurzfassung ist leider nicht verfügbar.'
+            x =  df.loc[Name]['Abstract_en']
+    if label == 'it':
+        x = df.loc[Name]['Abstract_it']
+        if x == 'NaN'or x != str():
+            comment = 'Purtroppo, la versione abbreviata francese non è disponibile.'
+            x =  df.loc[Name]['Abstract_en']
+    if label == 'fr':
+        x = df.loc[Name]['Abstract_fr']
+        if x == 'NaN'or x != str():
+            comment ="'La version courte en français n'est malheureusement pas disponible.'"
+            x =  df.loc[Name]['Abstract_en']
+    return x, comment
+
+#print (choose_language(data2, "Zoom", 'it'))
+
 
 
 #check if result from DBpedia is existing in the service catalog
