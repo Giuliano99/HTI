@@ -21,3 +21,12 @@ def search(keyword, Dataframe):
     #out.append (ranked_search['first_uri'])
     #print(out)
     return out
+
+def filter_category (keyword, Dataframe):
+    temp = Dataframe
+    for index, row in temp.iterrows():
+        if row['IT Category'] == keyword:
+            temp.drop(index, inplace=True)
+    #print(searched_Des)
+    out = temp[['Name', 'IT Category']]
+    return (out)

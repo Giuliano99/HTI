@@ -5,17 +5,19 @@
     <title>Dropdown</title>
 </head>
 <body>
-<select name="categories" method="GET" action="/">
-  <option value="{{categories[0]}}" selected>{{categories[0]}}</option>
-  {% for category in categories[1:] %}
-    <option value="{{category}}">{{category}}</option>
-  {% endfor %}
-</select>
-<form action="#" method="post">
-    <p>Search for Software:
-    <input type = "text" name="nm" /></p>
-    <p><input type = "submit" value="submit" /></p>
+<form class="form-inline" method="POST" >
+  <div class="form-group">
+    <div class="input-group">
+        <span class="input-group-addon">Please select IT Category: </span>
+            <select name="categories" method="GET" action="/">
+           <option value="{{categories[0]}}" selected>{{categories[0]}}</option>
+           {% for category in categories[1:] %}
+               <option value="{{category}}">{{category}}</option>
+           {% endfor %}
+           </select>
+    </div>
+    <button type="submit" class="btn btn-default">Go</button>
+  </div>
 </form>
-
 </body>
 </html>
