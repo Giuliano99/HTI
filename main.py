@@ -28,22 +28,20 @@ def home():  # put application's code here
         search_string = request.form["nm"]
         #print (search_string)
         search_result = search.search([search_string], df)
-
+        colours = ['Red', 'Blue', 'Black', 'Orange']
         return render_template('results 2.0.html', column_names=search_result.columns.values,
                                row_data=list(search_result.values.tolist()), link_column="first_uri", zip=zip)
 
-
-        #return redirect(url_for("user", usr = search_result.loc[0:5]['Name']))
-        #return f"<h1>{search_result}</h1>"
     else:
         return render_template("searchbar.html")
 
 
 
 
-@app.route("/<usr>")
-def user(usr):
-    return f"<h1>{usr}</h1>"
+@app.route('/dropdown', methods=["POST", "GET"])
+def dropdown():
+    categories = ['Category','Basic Applications', 'ERP', 'Network', 'Personal Computing', 'PLM', 'Plotting', 'Security']
+    return render_template('test.html', categories=categories)
 
 
 if __name__ == '__main__':
