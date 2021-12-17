@@ -49,11 +49,16 @@ def search(keyword, Dataframe):
     #print(out)
     return out
 
-def filter_category (keyword, Dataframe):
-    temp = Dataframe
-    for index, row in temp.iterrows():
-        if row['IT Category'] == keyword:
-            temp.drop(index, inplace=True)
-    #print(searched_Des)
-    out = temp[['Name', 'IT Category']]
-    return (out)
+#def filter_category (keyword, Dataframe):
+#    temp = Dataframe
+#    for index, row in temp.iterrows():
+#        if row['IT Category'] == keyword:
+#            temp.drop(index, inplace=True)
+#    #print(searched_Des)
+#    out = temp[['Name', 'IT Category']]
+#    return (out)
+
+
+def filter (Dataframe, Colum, keyword):
+    filtert = Dataframe.loc[Dataframe[Colum].str.contains(keyword, na=False)].copy()
+    return filtert

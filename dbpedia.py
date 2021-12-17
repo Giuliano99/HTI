@@ -186,6 +186,13 @@ def choose_language(df, Name, label):
 
 #print (choose_language(data2, "Zoom", 'it'))
 
+def creat_ticket(df, Name):
+    df = df.set_index('Name')
+    software =  df.loc[Name]
+    return software
+
+print(creat_ticket(data2, 'SAP ERP'))
+
 
 
 #check if result from DBpedia is existing in the service catalog
