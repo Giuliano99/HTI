@@ -24,23 +24,26 @@ df = data2
 
 @app.route('/', methods=["POST", "GET"])
 def home():  # put application's code here
+    categories = ['Basic Applications', 'ERP', 'Network', 'Personal Computing', 'PLM', 'Plotting',
+                  'Security']
     if request.method == "POST":
         search_string = request.form["nm"]
-        #print (search_string)
         search_result = search.search([search_string], df)
-        colours = ['Red', 'Blue', 'Black', 'Orange']
+
         return render_template('results 2.0.html', column_names=search_result.columns.values,
-                               row_data=list(search_result.values.tolist()), link_column="first_uri", zip=zip)
-
+                               row_data=list(search_result.values.tolist()), link_column="first_uri", zip=zip,
+                               categories=categories)
     else:
-        return render_template("searchbar.html")
-
-
+        return render_template("searchbar.html",  categories=categories)
 
 
 @app.route('/dropdown', methods=["POST", "GET"])
 def dropdown():
-    categories = ['Category','Basic Applications', 'ERP', 'Network', 'Personal Computing', 'PLM', 'Plotting', 'Security']
+
+    categories = ['Basic Applications', 'ERP', 'Network', 'Personal Computing', 'PLM', 'Plotting', 'Security']
+    select = request.form.get('categories')
+    result = search.filter_category(select, df)
+    print(result)
     return render_template('test.html', categories=categories)
 
 

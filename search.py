@@ -44,9 +44,16 @@ def search(keyword, Dataframe):
     except:
         print('pleas try another search')
     ranked_search = ranked_search.reset_index(inplace=False)
-    out = ranked_search[['Name', 'IT Category', 'Description',  'Abstract_en', 'sum']]
+    out = ranked_search[['Name', 'IT Category', 'Description',  'Abstract_de', 'sum']]
+    #out.append (ranked_search['first_uri'])
+    #print(out)
     return out
 
-
-#print(search(['Remote'], data2))
-
+def filter_category (keyword, Dataframe):
+    temp = Dataframe
+    for index, row in temp.iterrows():
+        if row['IT Category'] == keyword:
+            temp.drop(index, inplace=True)
+    #print(searched_Des)
+    out = temp[['Name', 'IT Category']]
+    return (out)
