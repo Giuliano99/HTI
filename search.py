@@ -4,7 +4,7 @@
 # if it can't find something in the catalog it should search in dbpedia
 import pandas as pd
 
-data2 = pd.read_excel('output.xlsx', index_col=0)  
+data2 = pd.read_excel('output.xls', index_col=0)
 #print(data2)
 
 
@@ -42,11 +42,9 @@ def search(keyword, Dataframe):
     try:
         ranked_search = searched.sort_values("sum", ascending=False)
     except:
-        print('pleas try another search')
+        print('please try another search')
     ranked_search = ranked_search.reset_index(inplace=False)
     out = ranked_search[['Name', 'IT Category', 'Description',  'Abstract_de', 'sum']]
-    #out.append (ranked_search['first_uri'])
-    #print(out)
     return out
 
 #def filter_category (keyword, Dataframe):

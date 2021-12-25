@@ -1,8 +1,8 @@
-
 from flask import Flask, redirect, url_for, render_template, request
-
 import search
 import pandas as pd
+from flask_mail import Mail, Message
+
 
 app = Flask(__name__)
 
@@ -21,6 +21,8 @@ df = data2
 #@app.route('/')
 #def home():  # put application's code here
 #    return 'Hello World!'
+
+
 
 @app.route('/', methods=["POST", "GET"])
 def home():  # put application's code here
