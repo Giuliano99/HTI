@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, redirect, url_for, render_template, request
 import search
 import pandas as pd
@@ -5,6 +7,16 @@ from flask_mail import Mail, Message
 
 
 app = Flask(__name__)
+mail= Mail(app)
+
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'htigroup04@gmail.com'
+app.config['MAIL_PASSWORD'] = 'Bestgroup#'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+mail = Mail(app)
+
 
 #
 # path_serviceCatalog = "https://raw.githubusercontent.com/Giuliano99/HTI/test/IT%20Service%20Katalog.csv"
@@ -63,6 +75,13 @@ def dropdown():
     result = search.filter(select_colum, select, df)
     print(result)
     return render_template('test.html', categories=categories, Colum=Colum)
+
+@app.route("/mail")
+def index():
+   msg = Message('Ticket request', sender='htigroup04@gmail.com', recipients=['htigroup04@gmail.com'])
+   msg.body = "Ticketrequest for the following software:"
+   mail.send(msg)
+   return "Sent"
 
 
 if __name__ == '__main__':
