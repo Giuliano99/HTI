@@ -7,7 +7,7 @@ from flask_mail import Mail, Message
 
 
 app = Flask(__name__)
-mail= Mail(app)
+mail = Mail(app)
 
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
@@ -43,13 +43,25 @@ def home():  # put application's code here
     if request.method == "POST":
         search_string = request.form["nm"]
         search_result = search.search([search_string], df)
-
         return render_template('results 2.0.html', column_names=search_result.columns.values,
-                               row_data=list(search_result.values.tolist()), link_column="first_uri", zip=zip,
+                               row_data=list(search_result.values.tolist()), link_column="Name", zip=zip,
                                categories=categories)
     else:
         return render_template("searchbar.html",  categories=categories)
 
+@app.route('/mail', methods=["POST", "GET"])
+def select_software():  # put application's code here
+    categories = ['Basic Applications', 'ERP', 'Network', 'Personal Computing', 'PLM', 'Plotting',
+                  'Security']
+    if request.method == "POST":
+        software = request.form["software_name"]
+        out = (f"You oredered {software}, congratulation")
+        msg = Message('Ticket request', sender='htigroup04@gmail.com', recipients=['htigroup04@gmail.com'])
+        msg.body = out
+        mail.send(msg)
+        return out
+    else:
+        return render_template("searchbar.html",  categories=categories)
 
 @app.route('/dropdown', methods=["POST", "GET"])
 def dropdown():
@@ -75,14 +87,6 @@ def dropdown():
     result = search.filter(select_colum, select, df)
     print(result)
     return render_template('test.html', categories=categories, Colum=Colum)
-
-@app.route("/mail")
-def index():
-   msg = Message('Ticket request', sender='htigroup04@gmail.com', recipients=['htigroup04@gmail.com'])
-   msg.body = "Ticketrequest for the following software:"
-   mail.send(msg)
-   return "Sent"
-
 
 if __name__ == '__main__':
     app.run(host="127.0.0.1", port=8080, debug=True)

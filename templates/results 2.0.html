@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 <head>
     <meta charset="UTF-8">
     <title>Results</title>
 </head>
+
 <body>
 <form class="form-inline" method="POST" >
   <div class="form-group">
@@ -36,9 +38,11 @@
         {% for col, row_ in zip(column_names, row) %}
         {% if col == link_column %}
         <td>
-            <button type="submit" value={{ row_ }} name="person_id" form="patient_form" class="patient_button">
+        <form action="mail" method="post">
+            <button type="submit" value={{ row_ }}, name="software_name">
                 {{ row_ }}
             </button>
+        </form>
         </td>
         {% else %}
         <td>{{row_}}</td>
