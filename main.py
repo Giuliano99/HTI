@@ -49,6 +49,13 @@ def home():  # put application's code here
     else:
         return render_template("searchbar.html",  categories=categories)
 
+@app.route('/redirect', methods=["POST", "GET"])
+def umleiten():  # put application's code here
+    if request.method == "POST":
+        return redirect(url_for('home'))
+    else:
+        return redirect(url_for('home'))
+
 @app.route('/mail', methods=["POST", "GET"])
 def select_software():  # put application's code here
     categories = ['Basic Applications', 'ERP', 'Network', 'Personal Computing', 'PLM', 'Plotting',
@@ -59,7 +66,7 @@ def select_software():  # put application's code here
         msg = Message('Ticket request', sender='htigroup04@gmail.com', recipients=['htigroup04@gmail.com'])
         msg.body = out
         mail.send(msg)
-        return out
+        return render_template("request_confirmation.html", out=out)
     else:
         return render_template("searchbar.html",  categories=categories)
 
