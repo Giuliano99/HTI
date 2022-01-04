@@ -6,7 +6,7 @@ from os import sep
 import pandas as pd
 
 data2 = pd.read_excel('output.xls', index_col=0)
-#print(data2)
+print(data2)
 
 
 def search(keyword, Dataframe):
@@ -93,7 +93,7 @@ def search(keyword, Dataframe):
 #    out = temp[['Name', 'IT Category']]
 #    return (out)
 
-#print(search('video', data2))
+print(search('BIM', data2))
 
 
 def filter (Dataframe, Colum, keyword):
