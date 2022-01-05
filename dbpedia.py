@@ -149,10 +149,10 @@ def append_DBpedia_data(df):
             print('prase error for', df.iloc[i]['Name'])
     return df
 
-#dbpdf = append_DBpedia_data(df)
+dbpdf = append_DBpedia_data(df)
 
-#print(dbpdf)
-#dbpdf.to_excel("output.xlsx")
+print(dbpdf)
+dbpdf.to_excel("output.xls")
 
 data2 = pd.read_excel('output.xlsx', index_col=0)  
 #print(data2)
@@ -191,7 +191,7 @@ def creat_ticket(df, Name):
     software =  df.loc[Name]
     return software
 
-print(creat_ticket(data2, 'SAP ERP'))
+#print(creat_ticket(data2, 'SAP ERP'))
 
 
 

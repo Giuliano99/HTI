@@ -1,11 +1,11 @@
 # search in the dataframe
-# need to be case insensitive
-# should count every substring
-# if it can't find something in the catalog it should search in dbpedia
+# is case insensitive
+# count every substring
+# if it can't find something in the catalog it should search in dbpedia (not working)
 from os import sep
 import pandas as pd
 
-data2 = pd.read_excel('output.xls', index_col=0)
+data2 = pd.read_excel('output.xlsx', index_col=0)
 #print(data2)
 
 
@@ -89,14 +89,14 @@ def search(keyword, Dataframe):
     try:
         ranked_search = searched.sort_values("sum", ascending=False)
         ranked_search = ranked_search.reset_index(inplace=False)
-        out = ranked_search[['Name', 'IT Category', 'Description',  'Abstract_de', 'sum']]
+        out = ranked_search
         #print (out)
         return out
     except:
         print('Please try another search!')
     
 
-print(search("video zoom", data2))
+print(search("Autocad", data2))
 
 
 def filter (Dataframe, Colum, keyword):
