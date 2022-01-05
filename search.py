@@ -6,7 +6,7 @@ from os import sep
 import pandas as pd
 
 data2 = pd.read_excel('output.xls', index_col=0)
-print(data2)
+#print(data2)
 
 
 def search(keyword, Dataframe):
@@ -14,22 +14,34 @@ def search(keyword, Dataframe):
     if ' ' in search:
         x = search.split(' ')
         search = '|'.join(x)
+    else:
+        search = search
     search = search.lower()
-    #print(search)
+    #print(type(search), search)
     for i in Dataframe.index:
-        try:
+        if type(Dataframe.loc[Dataframe.index[i],'Name']) == str:
             Dataframe.loc[Dataframe.index[i],'Name_search'] = Dataframe.loc[Dataframe.index[i],'Name'].lower()
-            Dataframe.loc[Dataframe.index[i],'Description_search'] = Dataframe.loc[Dataframe.index[i],'Description'].lower()
-            Dataframe.loc[Dataframe.index[i],'Abstract_en_search'] = Dataframe.loc[Dataframe.index[i],'Abstract_en'].lower()
-            Dataframe.loc[Dataframe.index[i],'Abstract_de_search'] = Dataframe.loc[Dataframe.index[i],'Abstract_de'].lower()
-            Dataframe.loc[Dataframe.index[i],'ApplicationCategory_search'] = Dataframe.loc[Dataframe.index[i],'ApplicationCategory'].lower()
-            Dataframe.loc[Dataframe.index[i],'IT Category_search'] = Dataframe.loc[Dataframe.index[i],'IT Category'].lower()
-        except:
+        else:
             Dataframe.loc[Dataframe.index[i],'Name_search'] = str('NaN')
+        if type(Dataframe.loc[Dataframe.index[i],'Description']) == str:
+            Dataframe.loc[Dataframe.index[i],'Description_search'] = Dataframe.loc[Dataframe.index[i],'Description'].lower()
+        else:
             Dataframe.loc[Dataframe.index[i],'Description_search'] = str('NaN')
+        if type(Dataframe.loc[Dataframe.index[i],'Abstract_en']) == str:
+            Dataframe.loc[Dataframe.index[i],'Abstract_en_search'] = Dataframe.loc[Dataframe.index[i],'Abstract_en'].lower()
+        else:
             Dataframe.loc[Dataframe.index[i],'Abstract_en_search'] = str('NaN')
+        if type(Dataframe.loc[Dataframe.index[i],'Abstract_de']) == str:
+            Dataframe.loc[Dataframe.index[i],'Abstract_de_search'] = Dataframe.loc[Dataframe.index[i],'Abstract_de'].lower()
+        else:
             Dataframe.loc[Dataframe.index[i],'Abstract_de_search'] = str('NaN')
+        if type(Dataframe.loc[Dataframe.index[i],'ApplicationCategory']) == str:
+            Dataframe.loc[Dataframe.index[i],'ApplicationCategory_search'] = Dataframe.loc[Dataframe.index[i],'ApplicationCategory'].lower()
+        else:
             Dataframe.loc[Dataframe.index[i],'ApplicationCategory_search'] = str('NaN')
+        if  type(Dataframe.loc[Dataframe.index[i],'IT Category']) == str:
+            Dataframe.loc[Dataframe.index[i],'IT Category_search'] = Dataframe.loc[Dataframe.index[i],'IT Category'].lower()
+        else:
             Dataframe.loc[Dataframe.index[i],'IT Category_search'] = str('NaN')
     searched_Name = Dataframe.loc[Dataframe['Name_search'].str.contains(search, na=False)].copy()
     #print(searched_Name)
@@ -84,18 +96,11 @@ def search(keyword, Dataframe):
         print('Please try another search!')
     
 
-#def filter_category (keyword, Dataframe):
-#    temp = Dataframe
-#    for index, row in temp.iterrows():
-#        if row['IT Category'] == keyword:
-#            temp.drop(index, inplace=True)
-#    #print(searched_Des)
-#    out = temp[['Name', 'IT Category']]
-#    return (out)
-
-print(search('BIM', data2))
+print(search("video zoom", data2))
 
 
 def filter (Dataframe, Colum, keyword):
     filtert = Dataframe.loc[Dataframe[Colum].str.contains(keyword, na=False)].copy()
     return filtert
+
+#print(filter(data2, "Name", "Zoom") )
