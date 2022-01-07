@@ -1,32 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
-<head>
-    <meta charset="UTF-8">
-    <title>Results</title>
-</head>
-
-<body>
-<form class="form-inline" method="POST" >
-  <div class="form-group">
-    <div class="input-group">
-        <span class="input-group-addon">Please select IT Category: </span>
-            <select name="categories" method="GET" action="/">
-           <option value="{{categories[0]}}" selected>{{categories[0]}}</option>
-           {% for category in categories[1:] %}
-               <option value="{{category}}">{{category}}</option>
-           {% endfor %}
-           </select>
-    </div>
-    <button type="submit" class="btn btn-default">Go</button>
-  </div>
-</form>
-<form action="#" method="post">
-    <p>Search for Software:
-    <input type = "text" name="nm" /></p>
-    <p><input type = "submit" value="submit" /></p>
-</form>
-
+﻿{% extends "base.html" %}
+{% block title %} Results {% endblock %}
+{% block content %}
 <table>
     <tr>
         {% for col in column_names %}
@@ -38,11 +12,9 @@
         {% for col, row_ in zip(column_names, row) %}
         {% if col == link_column %}
         <td>
-        <form action="mail" method="post">
-            <button type="submit" value={{ row_ }}, name="software_name">
+            <button type="submit" value={{ row_ }} name="person_id" form="patient_form" class="patient_button">
                 {{ row_ }}
             </button>
-        </form>
         </td>
         {% else %}
         <td>{{row_}}</td>
@@ -52,3 +24,4 @@
     {% endfor %}
 
 </table>
+ {% endblock %}
