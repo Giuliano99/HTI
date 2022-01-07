@@ -90,7 +90,7 @@ def search(keyword, Dataframe):
         ranked_search = searched.sort_values("sum", ascending=False)
         ranked_search = ranked_search.reset_index(inplace=False)
         out = ranked_search[['Name', 'IT Category', 'Description',  'Abstract_de', 'sum']]
-        #print (out)
+        print(out)
         return out
     except:
         print('Please try another search!')
@@ -100,7 +100,10 @@ print(search("video zoom", data2))
 
 
 def filter (Dataframe, Colum, keyword):
-    filtert = Dataframe.loc[Dataframe[Colum].str.contains(keyword, na=False)].copy()
+    if (keyword == 'All'):
+        return Dataframe
+    else:
+       filtert = Dataframe.loc[Dataframe[Colum].str.contains(keyword, na=False)].copy()
     return filtert
 
 #print(filter(data2, "Name", "Zoom") )
