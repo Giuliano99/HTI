@@ -100,6 +100,12 @@ print(search("video", data2))
 
 
 def filter (Dataframe, Colum, keyword):
+    # if (keyword == 'All'):
+    #     return Dataframe
+    # else:
+    print(Dataframe)
+    print(Colum)
+    print(keyword)
     filtert = Dataframe.loc[Dataframe[Colum].str.contains(keyword, na=False)].copy()
     return filtert
 
