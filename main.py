@@ -96,7 +96,7 @@ def dropdown():
          Colum = 'IT Category'
          select = request.form["categories"]
          result = search.filter(df, Colum, select)
-         print(result)
+         #print(result)
          return render_template('test.html', categories=IT_Category, Colum=Colum, ApplicationCategory=ApplicationCategory)
     else:
         return render_template('test.html', categories=IT_Category, Colum=Colum,
