@@ -28,12 +28,10 @@ mail = Mail(app)
 # df = df.reset_index(inplace=False)
 data2 = pd.read_excel('output.xls', index_col=0)
 df = data2
-# @app.route('/')
-# def home():  # put application's code here
-#    return 'Hello World!'
+
 
 categories = ['All', 'Basic Applications', 'ERP', 'PLM']
-ApplicationCategory = ['Access Mgmt. Software', 'Analysation software', 'Animation software', 'ApplicationCategory',
+ApplicationCategory = [ 'All', 'Access Mgmt. Software', 'Analysation software', 'Animation software', 'ApplicationCategory',
                        'Asset Mgmt. Software', 'Audition software', 'Automatisation software',
                        'Bug and issue tracking software', 'BIM',
                        'Building Mgmt.', 'BI', 'BPM',
