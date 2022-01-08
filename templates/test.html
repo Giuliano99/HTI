@@ -5,8 +5,11 @@
     <title>Dropdown</title>
 </head>
 <body>
-<form  action="cat" class="form-inline" method="POST" >
-  <div class="form-group">
+</form>
+<form action="cat" method="post">
+
+        <p>
+     <div class="form-group">
     <div class="input-group">
         <span class="input-group-addon">Please select IT Category: </span>
             <select name="categories" method="GET">
@@ -16,13 +19,11 @@
            {% endfor %}
            </select>
     </div>
-    <button type="submit" class="btn btn-default">Go</button>
   </div>
-</form>
-
-<form action="appcat" class="form-inline" method="POST" >
-  <div class="form-group">
-    <div class="input-group">
+        </p>
+    <p>
+              <div class="form-group">
+        <div class="input-group">
         <span class="input-group-addon">Please select Application Category: </span>
             <select name="appcategories" method="GET" >
            <option value="{{ApplicationCategory[0]}}" selected>{{ApplicationCategory[0]}}</option>
@@ -31,8 +32,17 @@
            {% endfor %}
            </select>
     </div>
-    <button type="submit" class="btn btn-default">Go</button>
   </div>
-</form>
+        </p>
+         <p>
+            <label for="search">Search</label>
+            <input type="search" name="search">
+        </p>
+        <p>
+            <input type="submit">
+        </p>
+    </form>
+
+
 </body>
 </html>

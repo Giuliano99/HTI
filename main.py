@@ -72,25 +72,22 @@ def home():  # put application's code here
 
     if request.method == "POST":
         search_string = request.form["nm"]
-        #search_result = search.search(search_string, df)
-
-        return msearch(search_string, df)
+        search_result = search.search(search_string, df)
+        return render_template('results 2.0.html', column_names=search_result.columns.values,
+                           row_data=list(search_result.values.tolist()), link_column="Name", zip=zip,
+                           categories=categories)
     else:
         return render_template("searchbar.html", categories=categories)
 
 
 def msearch(keyword, dataframe):
     search_result = search.search(keyword, dataframe)
-    return render_template('results 2.0.html', column_names=search_result.columns.values,
-                           row_data=list(search_result.values.tolist()), link_column="Name", zip=zip,
-                           categories=categories)
+    return search_result
 
 
 def mfilter(dataframe, cat ,keyword):
-    search_result = search.filter(dataframe,cat, keyword)
-    return render_template('results 2.0.html', column_names=search_result.columns.values,
-                           row_data=list(search_result.values.tolist()), link_column="Name", zip=zip,
-                           categories=categories)
+    search_result = search.filter(dataframe, cat, keyword)
+    return search_result
 
 
 @app.route('/redirect', methods=["POST", "GET"])
@@ -116,10 +113,22 @@ def select_software():  # put application's code here
 
 @app.route('/cat', methods=["POST", "GET"])
 def cate():
+    data = df
     if request.method == "POST":
-        category = request.form["categories"]
-        #print(category)
-        return mfilter(df,'IT Category' ,category)
+        category = request.form.get('categories')
+        appcategory = request.form.get('appcategories')
+        search_string = request.form.get('search')
+
+        print(category)
+        print(appcategory)
+        print(search_string)
+        print(data)
+        data = mfilter(data,'IT Category', category)
+        data = mfilter(data,'ApplicationCategory', appcategory)
+        data = msearch(search_string, data)
+        print(data)
+
+        return render_template("searchbar.html", categories=categories)
     else:
         return render_template("searchbar.html", categories=categories)
     print("Hi")
@@ -127,7 +136,7 @@ def cate():
 
 
 @app.route('/appcat', methods=["POST", "GET"])
-def appcate():
+def appcate(data):
     if request.method == "POST":
         category = request.form["appcategories"]
         #print(category)
