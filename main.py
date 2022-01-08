@@ -72,15 +72,15 @@ def home():  # put application's code here
 
     if request.method == "POST":
         search_string = request.form["nm"]
-        search_result = search.search(search_string, df)
+        #search_result = search.search(search_string, df)
 
-        return msearch(df, search_result)
+        return msearch(search_string, df)
     else:
         return render_template("searchbar.html", categories=categories)
 
 
-def msearch(dataframe, keyword):
-    search_result = search.search(dataframe, keyword)
+def msearch(keyword, dataframe):
+    search_result = search.search(keyword, dataframe)
     return render_template('results 2.0.html', column_names=search_result.columns.values,
                            row_data=list(search_result.values.tolist()), link_column="Name", zip=zip,
                            categories=categories)
