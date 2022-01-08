@@ -75,6 +75,7 @@ def home():  # put application's code here
     if request.method == "POST":
         search_string = request.form["nm"]
         search_result = search.search(search_string, df)
+
         return msearch(df, search_result)
     else:
         return render_template("searchbar.html", categories=categories)
@@ -132,7 +133,7 @@ def appcate():
     if request.method == "POST":
         category = request.form["appcategories"]
         #print(category)
-        return mfilter(df,'ApplicationCategory' ,category)
+        return mfilter(df,'ApplicationCategory',category)
     else:
         return render_template("searchbar.html", categories=categories)
     print("Hi")
