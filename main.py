@@ -21,7 +21,7 @@ mail = Mail(app)
 # path_uri = "https://raw.githubusercontent.com/Giuliano99/HTI/test/uri.csv"
 #
 # serviceCatalog = pd.read_csv(path_serviceCatalog)
-# uri = pd.read_csv(path_uri)
+# uri = pd.read_csv(path_uri)a
 
 # df = create_dataframe(serviceCatalog, uri)
 # df = dbpedia.create_dataframe('IT Service Katalog.csv', 'uri.csv')
