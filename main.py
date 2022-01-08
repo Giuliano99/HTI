@@ -33,40 +33,40 @@ df = data2
 #    return 'Hello World!'
 
 categories = ['All', 'Basic Applications', 'ERP', 'PLM']
-ApplicationCategory = ['Buisness Intelligence (BI);#20','Access Mgmt. Software', 'Analysation software', 'Animation software', 'ApplicationCategory',
+ApplicationCategory = ['Access Mgmt. Software', 'Analysation software', 'Animation software', 'ApplicationCategory',
                        'Asset Mgmt. Software', 'Audition software', 'Automatisation software',
-                       'Bug and issue tracking software', 'Building information modeling (BIM)',
-                       'Building Mgmt.', 'Buisness Intelligence (BI)', 'Business process Mgmt. (BPM)',
+                       'Bug and issue tracking software', 'BIM',
+                       'Building Mgmt.', 'BI', 'BPM',
                        'Calculation software', 'Call management software', 'Collaborative software',
-                       'Computer Aided design 2D (2D CAD)', 'Computer Aided design 3D (3D CAD)',
-                       'Computer aided engineering (CAE)', 'Computer Aided Manufacturing (CAM)',
-                       'Computer algebra system (CAS)', 'Computer graphic software 3D',
-                       'Computer-assisted translation (CAT)', 'Computer-integrated manufacturing (CIM)',
-                       'Content Mgmt. Software (CMS)', 'Conveyor system engeneering tool',
-                       'Corporate Performance Mgmt (CPM)', 'Customer Portal', 'Customer Relationship Mgmt (CRM)',
-                       'Customer Service Management (CSM)', 'Customs Declaration Programm (CDP)',
+                       '2D CAD', '3D CAD',
+                       'CAE', 'CAM',
+                       'CAS', 'Computer graphic software 3D',
+                       'CAT', 'CIM',
+                       'CMS', 'Conveyor system engeneering tool',
+                       'CPM', 'Customer Portal', 'CRM',
+                       'CSM', 'CDP',
                        'Dangerous good Mgmt. software', 'Data Mgmt. software',
-                       'DevOps', 'Digital Asset Mgmt. (DAM)', 'Digital Signage Software',
-                       'Document management system (DMS)', 'E-Commerce Software', 'Electronic design automation (EDA)',
-                       'Electronic Signature Software', 'Enterprise Asset Management (EAM)',
-                       'Enterprise Legal Management (ELM)', 'Enterprise Output Management (EOM)',
-                       'Enterprise Ressource Planning (ERP)', 'Export control Mgmt.', 'File Sharing System',
+                       'DevOps', 'DAM', 'Digital Signage Software',
+                       'DMS', 'E-Commerce Software', 'EDA',
+                       'Electronic Signature Software', 'EAM',
+                       'ELM', 'EOM',
+                       'ERP', 'Export control Mgmt.', 'File Sharing System',
                        'Financial Consolidation Software', 'Fleet management software',
                        'FMEA Functional Safety Software',
-                       'Geographic information system (GIS)', 'Graphics + Design apps',
-                       'Human capital management (HCM)', 'Integrated development environment (IDE)',
-                       'Lean Project Mgmt. Software', 'Learning Management System (LMS)',
-                       'Machine Data Capturing (MDC)',
-                       'Manufacturing execution systems (MES)', 'Marketing Automation', 'MindMapping', 'Office Suite',
-                       'Operating system', 'Patent Mgmt. Software (PMS)', 'Payroll Software', 'PDF-Software',
-                       'PLM Suite', 'Production Data Capturing (PDC)', 'Project Management Software',
-                       'Recruiting Software', 'Remote administration software', 'Ropeway Design Office (RDO)',
+                       'GIS', 'Graphics + Design apps',
+                       'HCM', 'IDE',
+                       'Lean Project Mgmt. Software', 'LMS',
+                       'MDC',
+                       'MES', 'Marketing Automation', 'MindMapping', 'Office Suite',
+                       'Operating system', 'PMS', 'Payroll Software', 'PDF-Software',
+                       'PLM Suite', 'PDC', 'Project Management Software',
+                       'Recruiting Software', 'Remote administration software', 'RDO',
                        'Sales Software', 'Screenshot software', 'Simulaton Software', 'Staff Planning',
                        'Statistical software', 'Structural engineering software',
-                       'Supervisory Control and Data Acquisition (SCADA)',
-                       'Supply Chain Mgmt. (SCM)', 'Survey data collection (SDO)', 'Tax Mgmt. software',
-                       'Time Mgmt. Software', 'Transport Mgmt. System (TMS)', 'Travel & Expense Mgmt. Software',
-                       'Treasury Mgmt. System (TMS)', 'Warehouse Management System', 'Workforce Mgmt. Software (WMS)']
+                       'SCADA',
+                       'SCM', 'SDO', 'Tax Mgmt. software',
+                       'Time Mgmt. Software', 'TMS', 'Travel & Expense Mgmt. Software',
+                       'TMS', 'Warehouse Management System', 'WMS']
 
 
 @app.route('/', methods=["POST", "GET"])
@@ -85,8 +85,9 @@ def msearch(dataframe, keyword):
     return render_template('results 2.0.html', column_names=search_result.columns.values,
                            row_data=list(search_result.values.tolist()), link_column="Name", zip=zip,
                            categories=categories)
-def mfilter(dataframe, cat ,keyword):
 
+
+def mfilter(dataframe, cat ,keyword):
     search_result = search.filter(dataframe,cat, keyword)
     return render_template('results 2.0.html', column_names=search_result.columns.values,
                            row_data=list(search_result.values.tolist()), link_column="Name", zip=zip,
