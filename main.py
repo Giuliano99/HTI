@@ -77,7 +77,7 @@ def home():  # put application's code here
         search_result = search.search(search_string, df)
         return msearch(df, search_result)
     else:
-        return render_template("searchbar.html", categories=categories)
+        return render_template("searchbar.html",categories=categories,column_names=df.columns.values,row_data=list(df.values.tolist()), picture_column="Picture",description_column="Description",name_column="Name", zip=zip)
 
 
 def msearch(dataframe, keyword):
