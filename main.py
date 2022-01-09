@@ -80,7 +80,7 @@ def home():  # put application's code here
                            row_data=list(search_result.values.tolist()), link_column="Name", zip=zip,
                            categories=categories, ApplicationCategory=ApplicationCategory)
     else:
-        return render_template("searchbar.html",categories=categories,column_names=df.columns.values,row_data=list(df.values.tolist()), picture_column="Picture",description_column="Description",name_column="Name", zip=zip)
+        return render_template("searchbar.html",categories=categories,ApplicationCategory=ApplicationCategory,column_names=df.columns.values,row_data=list(df.values.tolist()), picture_column="Picture",description_column="Description",name_column="Name", zip=zip)
 
 
 def msearch(keyword, dataframe):
