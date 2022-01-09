@@ -22,7 +22,7 @@ def search(keyword, Dataframe):
     for i in Dataframe.index:
         if type(Dataframe.loc[Dataframe.index[i],'Name']) == str:
             Dataframe.loc[Dataframe.index[i],'Name_search'] = Dataframe.loc[Dataframe.index[i],'Name'].lower()
-        else:
+        else: 
             Dataframe.loc[Dataframe.index[i],'Name_search'] = str('NaN')
         if type(Dataframe.loc[Dataframe.index[i],'Description']) == str:
             Dataframe.loc[Dataframe.index[i],'Description_search'] = Dataframe.loc[Dataframe.index[i],'Description'].lower()
@@ -90,7 +90,7 @@ def search(keyword, Dataframe):
     try:
         ranked_search = searched.sort_values("sum", ascending=False)
         ranked_search = ranked_search.reset_index(inplace=False)
-        out = ranked_search[['Name', 'Description']]
+        out = ranked_search
         #print (out)
         return out
     except:

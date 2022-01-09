@@ -1,30 +1,72 @@
 ﻿{% extends "base.html" %}
 
-{% block title %} Results {% endblock %}
-{% block content %}
-<table>
-    <tr>
-        {% for col in column_names %}
-        <th>{{col}}</th>
-        {% endfor %}
-    </tr>
+    {% block title %} Results {% endblock %}
+    {% block content %}
+    <!--CARD-->
+    <div class="container">
+        <!-- <div class="card">
+            <img src="static/libraries/img/SAPIcon.jpg" />
+            <h4> SAP</h4>
+            <h5> SAP is the central ERP-software for handling business processes within the HTI-Group</h5>
+            <a href="#">Read more</a>
+        </div>
+
+        <div class="card">
+            <img src="static/libraries/img/AdobePhotosopIcon.png" />
+            <h4>Adobe Photoshop</h4>
+            <h5>Adobe Photoshop provides comprehensive tools for editing, cropping, and retouching photos</h5>
+            <a href="#">Read more</a>
+        </div>
+
+        <div class="card">
+            <img src="static/libraries/img/teamViewerIcon.png" />
+            <h4>Teamviewer</h4>
+            <h5>Teamviewer is a remote administration tool and is used for customers support</h5>
+            <a href="#">Read more</a>
+        </div>
+        <div class="card">
+            <img src="static/libraries/img/adobeCreativeCloudIcon.jpg" />
+            <h4>Adobe Creative Cloud</h4>
+            <h5>Adobe Creative Cloud is a subscription service consisting of all common Adobe programs for photo and video editing</h5>
+            <a href="#">Read more</a>
+        </div>
+
+        <div class="card">
+            <img src="static/libraries/img/zoomIcon.png" />
+            <h4>Zoom Videoconferencing </h4>
+            <h5>Zoom is a videotelephony software program that provides a video chatting service</h5>
+            <a href="#">Read more</a>
+        </div>
+
+        <div class="card">
+            <img src="static/libraries/img/autodeskIcon.png" />
+            <h4>Autodesk AEC collection</h4>
+            <h5>Software to produce complete, consistent and coordinated, model-based projects and documents</h5>
+            <a href="#">Read more</a>
+        </div> -->
     {% for row in row_data %}
-    <tr>
+
+    <div class="card">
         {% for col, row_ in zip(column_names, row) %}
-        {% if col == link_column %}
-        <td>
-        <form action="mail" method="post">
-            <button type="submit" value={{ row_ }}, name="software_name">
-                {{ row_ }}
-            </button>
-        </form>
-        </td>
-        {% else %}
-        <td>{{row_}}</td>
+
+        {% if col == picture_column %}
+        <img src= {{row_}} alt="imagen"/>
+        {% endif %}
+
+        {% if col == name_column %}
+        <h4>{{row_}}</h4>
+        {% endif %}
+
+        {% if col == description_column %}
+        <h5>{{row_}}</h5>
         {% endif %}
         {% endfor %}
-    </tr>
-    {% endfor %}
+        <a href="#">Read more</a>
+    </div>
 
-</table>
-{% endblock %}
+
+    {% endfor %}
+    </div>
+
+    {% endblock  %}
+
