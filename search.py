@@ -10,6 +10,7 @@ data2 = pd.read_excel('output.xlsx', index_col=0)
 
 
 def search(keyword, Dataframe):
+    #print(keyword)
     search = str(keyword)
     if ' ' in search:
         x = search.split(' ')
@@ -89,14 +90,14 @@ def search(keyword, Dataframe):
     try:
         ranked_search = searched.sort_values("sum", ascending=False)
         ranked_search = ranked_search.reset_index(inplace=False)
-        out = ranked_search
+        out = ranked_search[['Name', 'Description']]
         #print (out)
         return out
     except:
         print('Please try another search!')
     
 
-print(search("video", data2))
+#print(search("video", data2))
 
 
 def filter (Dataframe, Colum, keyword):
