@@ -76,11 +76,14 @@ def home():  # put application's code here
         search_string = request.form.get('search')
         print(search_string)
         search_result = search.search(search_string, df)
-        return render_template('results 2.0.html', column_names=search_result.columns.values,
-                           row_data=list(search_result.values.tolist()), link_column="Name", zip=zip,
-                           categories=categories, ApplicationCategory=ApplicationCategory)
+        search_result = search_result.drop(columns=['index', "Name_search", "Description_search", "Abstract_en_search", "Abstract_de_search", "ApplicationCategory_search", "IT Category_search", "sum"])
+        print(search_result)
+        return render_template('results 2.0.html', categories=categories,ApplicationCategory=ApplicationCategory,column_names=df.columns.values,
+        row_data=list(search_result.values.tolist()), picture_column="Picture",description_column="Description",name_column="Name", zip=zip)
     else:
-        return render_template("searchbar.html",categories=categories,ApplicationCategory=ApplicationCategory,column_names=df.columns.values,row_data=list(df.values.tolist()), picture_column="Picture",description_column="Description",name_column="Name", zip=zip)
+        print(df)
+        return render_template("searchbar.html",categories=categories,ApplicationCategory=ApplicationCategory,column_names=df.columns.values,
+        row_data=list(df.values.tolist()), picture_column="Picture",description_column="Description",name_column="Name", zip=zip)
 
 
 def msearch(keyword, dataframe):

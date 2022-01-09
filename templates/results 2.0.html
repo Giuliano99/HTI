@@ -12,22 +12,30 @@
         {% endfor %}
     </tr>
     {% for row in row_data %}
-    <tr>
+
+    <div class="card">
         {% for col, row_ in zip(column_names, row) %}
-        {% if col == link_column %}
-        <td>
-        <form action="mail" method="post">
-            <button type="submit" value={{ row_ }}, name="software_name">
-                {{ row_ }}
-            </button>
-        </form>
-        </td>
-        {% else %}
-        <td>{{row_}}</td>
+
+        {% if col == picture_column %}
+        <img src= {{row_}} alt="imagen"/>
+        {% endif %}
+
+        {% if col == name_column %}
+        <h4>{{row_}}</h4>
+        {% endif %}
+
+        {% if col == description_column %}
+        <h5>{{row_}}</h5>
         {% endif %}
         {% endfor %}
-    </tr>
+        <a href="#">Read more</a>
+    </div>
+
+
     {% endfor %}
+    </div>
+
+    {% endblock  %}
 
 </table>
  </div>
