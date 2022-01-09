@@ -71,12 +71,16 @@ ApplicationCategory = [ 'All', 'Access Mgmt. Software', 'Analysation software', 
 def home():  # put application's code here
 
     if request.method == "POST":
+        data = df
         category = request.form.get('categories')
         appcategory = request.form.get('appcategories')
         search_string = request.form.get('search')
+
         print(search_string)
         search_result = search.search(search_string, df)
         search_result = search_result.drop(columns=['index', "Name_search", "Description_search", "Abstract_en_search", "Abstract_de_search", "ApplicationCategory_search", "IT Category_search", "sum"])
+        if search_result.empty:
+            return print('Please try another search!')
         print(search_result)
         return render_template('results 2.0.html', categories=categories,ApplicationCategory=ApplicationCategory,column_names=df.columns.values,
         row_data=list(search_result.values.tolist()), picture_column="Picture",description_column="Description",name_column="Name", zip=zip)
@@ -124,20 +128,22 @@ def cate():
         category = request.form.get('categories')
         appcategory = request.form.get('appcategories')
         search_string = request.form.get('search')
-
         print(category)
         print(appcategory)
         print(search_string)
-        #print(data)
         data = mfilter(data,'IT Category', category)
         data = data.reset_index()
+        del data['index']
         print(data)
         data = mfilter(data,'ApplicationCategory', appcategory)
         data = data.reset_index()
+        del data['index']
         print(data)
         data = msearch(search_string, data)
+        data = data.reset_index()
+        del data['index']
+        print("Result")
         print(data)
-
         return render_template("searchbar.html", categories=categories, ApplicationCategory=ApplicationCategory)
     else:
         return render_template("searchbar.html", categories=categories, ApplicationCategory=ApplicationCategory)
@@ -149,13 +155,6 @@ def cate():
 @app.route('/dropdown', methods=["POST", "GET"])
 def dropdown():
     Colum = ['IT Category', 'ApplicationCategory']
-    # if select_colum == "IT Category":
-    #     select = request.form.get('IT Category')
-    #     categories = IT_Category
-    # else:
-    #     select = request.form.get(' ApplicationCategory')
-    #     categories = ApplicationCategory
-    # result = search.filter(select_colum, select, df)
     if request.method == "POST":
         Colum = 'IT Category'
         category = request.form.get('categories')
@@ -169,27 +168,6 @@ def dropdown():
         return render_template('test.html', categories=categories, Colum=Colum,
                                ApplicationCategory=ApplicationCategory)
 
-
-@app.route('/testdropdown', methods=["POST", "GET"])
-def testdropdown():
-    Colum = ['IT Category', 'ApplicationCategory']
-    # if select_colum == "IT Category":
-    #     select = request.form.get('IT Category')
-    #     categories = IT_Category
-    # else:
-    #     select = request.form.get(' ApplicationCategory')
-    #     categories = ApplicationCategory
-    # result = search.filter(select_colum, select, df)
-    if request.method == "POST":
-        Colum = 'IT Category'
-        select = request.form["categories"]
-        result = search.filter(df, Colum, select)
-        print(result)
-        return render_template('test.html', categories=categories, Colum=Colum,
-                               ApplicationCategory=ApplicationCategory)
-    else:
-        return render_template('test.html', categories=categories, Colum=Colum,
-                               ApplicationCategory=ApplicationCategory)
 
 
 if __name__ == '__main__':

@@ -10,6 +10,8 @@ data2 = pd.read_excel('output.xlsx', index_col=0)
 
 
 def search(keyword, Dataframe):
+    if keyword == "":
+        return Dataframe
     #print(keyword)
     search = str(keyword)
     if ' ' in search:
@@ -95,6 +97,7 @@ def search(keyword, Dataframe):
         return out
     except:
         print('Please try another search!')
+        return []
     
 
 #print(search("video", data2))
