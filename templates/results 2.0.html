@@ -7,25 +7,42 @@
 </head>
 
 <body>
-<form class="form-inline" method="POST" >
-  <div class="form-group">
+</form>
+<form action="/" method="post">
+        <p>
+     <div class="form-group">
     <div class="input-group">
         <span class="input-group-addon">Please select IT Category: </span>
-            <select name="categories" method="GET" action="/">
+            <select name="categories" method="GET">
            <option value="{{categories[0]}}" selected>{{categories[0]}}</option>
            {% for category in categories[1:] %}
                <option value="{{category}}">{{category}}</option>
            {% endfor %}
            </select>
     </div>
-    <button type="submit" class="btn btn-default">Go</button>
   </div>
-</form>
-<form action="#" method="post">
-    <p>Search for Software:
-    <input type = "text" name="nm" /></p>
-    <p><input type = "submit" value="submit" /></p>
-</form>
+        </p>
+    <p>
+              <div class="form-group">
+        <div class="input-group">
+        <span class="input-group-addon">Please select Application Category: </span>
+            <select name="appcategories" method="GET" >
+           <option value="{{ApplicationCategory[0]}}" selected>{{ApplicationCategory[0]}}</option>
+           {% for appcategory in ApplicationCategory[1:] %}
+               <option value="{{appcategory}}">{{appcategory}}</option>
+           {% endfor %}
+           </select>
+    </div>
+  </div>
+        </p>
+         <p>
+            <label for="search">Search</label>
+            <input type="search" name="search">
+        </p>
+        <p>
+            <input type="submit">
+        </p>
+    </form>
 
 <table>
     <tr>
@@ -52,3 +69,4 @@
     {% endfor %}
 
 </table>
+</body>

@@ -71,13 +71,16 @@ ApplicationCategory = [ 'All', 'Access Mgmt. Software', 'Analysation software', 
 def home():  # put application's code here
 
     if request.method == "POST":
-        search_string = request.form["nm"]
+        category = request.form.get('categories')
+        appcategory = request.form.get('appcategories')
+        search_string = request.form.get('search')
+        print(search_string)
         search_result = search.search(search_string, df)
         return render_template('results 2.0.html', column_names=search_result.columns.values,
                            row_data=list(search_result.values.tolist()), link_column="Name", zip=zip,
-                           categories=categories)
+                           categories=categories, ApplicationCategory=ApplicationCategory)
     else:
-        return render_template("searchbar.html", categories=categories)
+        return render_template("searchbar.html", categories=categories, ApplicationCategory=ApplicationCategory)
 
 
 def msearch(keyword, dataframe):
@@ -122,29 +125,22 @@ def cate():
         print(category)
         print(appcategory)
         print(search_string)
-        print(data)
+        #print(data)
         data = mfilter(data,'IT Category', category)
+        data = data.reset_index()
+        print(data)
         data = mfilter(data,'ApplicationCategory', appcategory)
+        data = data.reset_index()
+        print(data)
         data = msearch(search_string, data)
         print(data)
 
-        return render_template("searchbar.html", categories=categories)
+        return render_template("searchbar.html", categories=categories, ApplicationCategory=ApplicationCategory)
     else:
-        return render_template("searchbar.html", categories=categories)
+        return render_template("searchbar.html", categories=categories, ApplicationCategory=ApplicationCategory)
     print("Hi")
     return
 
-
-@app.route('/appcat', methods=["POST", "GET"])
-def appcate(data):
-    if request.method == "POST":
-        category = request.form["appcategories"]
-        #print(category)
-        return mfilter(df,'ApplicationCategory',category)
-    else:
-        return render_template("searchbar.html", categories=categories)
-    print("Hi")
-    return
 
 
 @app.route('/dropdown', methods=["POST", "GET"])
@@ -159,11 +155,13 @@ def dropdown():
     # result = search.filter(select_colum, select, df)
     if request.method == "POST":
         Colum = 'IT Category'
-        select = request.form["categories"]
-        request.form["appcategories"]
-        #result = search.filter(df, Colum, select)
-        #print(result)
-        return
+        category = request.form.get('categories')
+        appcategory = request.form.get('appcategories')
+        search_string = request.form.get('search')
+        search_result = search.search(search_string, df)
+        print(search_result)
+        return render_template('test.html', categories=categories, Colum=Colum,
+                               ApplicationCategory=ApplicationCategory)
     else:
         return render_template('test.html', categories=categories, Colum=Colum,
                                ApplicationCategory=ApplicationCategory)

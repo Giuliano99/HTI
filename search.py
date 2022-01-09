@@ -10,7 +10,7 @@ data2 = pd.read_excel('output.xlsx', index_col=0)
 
 
 def search(keyword, Dataframe):
-    print(keyword)
+    #print(keyword)
     search = str(keyword)
     if ' ' in search:
         x = search.split(' ')
