@@ -75,31 +75,23 @@ def home():  # put application's code here
         category = request.form.get('categories')
         appcategory = request.form.get('appcategories')
         search_string = request.form.get('search')
-        print(category)
-        print(appcategory)
-        print(search_string)
 
         data = mfilter(data, 'IT Category', category)
-        print(data)
-        # del data['index']
         data = data.reset_index(drop=True)
+        if data.empty:
+            return render_template('searchfail.html', categories=categories, ApplicationCategory=ApplicationCategory)
 
-        print(data)
         data = mfilter(data, 'ApplicationCategory', appcategory)
-        # del data['index']
         data = data.reset_index(drop=True)
+        if data.empty:
+            return render_template('searchfail.html', categories=categories, ApplicationCategory=ApplicationCategory)
 
         data = msearch(search_string, data)
-        # del data['index']
         data = data.reset_index(drop=True)
+        if data.empty:
+            return render_template('searchfail.html', categories=categories, ApplicationCategory=ApplicationCategory)
 
         search_result = data
-        print(search_result)
-
-        # search_result = search.search(search_string, df)
-
-        if search_result.empty:
-            return print('Please try another search!')
 
         print(search_result)
         return render_template('results 2.0.html', categories=categories, ApplicationCategory=ApplicationCategory,
