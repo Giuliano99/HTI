@@ -29,9 +29,9 @@ mail = Mail(app)
 data2 = pd.read_excel('output.xls', index_col=0)
 df = data2
 
-
 categories = ['All', 'Basic Applications', 'ERP', 'PLM']
-ApplicationCategory = [ 'All', 'Access Mgmt. Software', 'Analysation software', 'Animation software', 'ApplicationCategory',
+ApplicationCategory = ['All', 'Access Mgmt. Software', 'Analysation software', 'Animation software',
+                       'ApplicationCategory',
                        'Asset Mgmt. Software', 'Audition software', 'Automatisation software',
                        'Bug and issue tracking software', 'BIM',
                        'Building Mgmt.', 'BI', 'BPM',
@@ -75,19 +75,43 @@ def home():  # put application's code here
         category = request.form.get('categories')
         appcategory = request.form.get('appcategories')
         search_string = request.form.get('search')
-
+        print(category)
+        print(appcategory)
         print(search_string)
-        search_result = search.search(search_string, df)
-        search_result = search_result.drop(columns=['index', "Name_search", "Description_search", "Abstract_en_search", "Abstract_de_search", "ApplicationCategory_search", "IT Category_search", "sum"])
+
+        data = mfilter(data, 'IT Category', category)
+        print(data)
+        # del data['index']
+        data = data.reset_index(drop=True)
+
+        print(data)
+        data = mfilter(data, 'ApplicationCategory', appcategory)
+        # del data['index']
+        data = data.reset_index(drop=True)
+
+        data = msearch(search_string, data)
+        # del data['index']
+        data = data.reset_index(drop=True)
+
+        search_result = data
+        print(search_result)
+
+        # search_result = search.search(search_string, df)
+
         if search_result.empty:
             return print('Please try another search!')
+
         print(search_result)
-        return render_template('results 2.0.html', categories=categories,ApplicationCategory=ApplicationCategory,column_names=df.columns.values,
-        row_data=list(search_result.values.tolist()), picture_column="Picture",description_column="Description",name_column="Name", zip=zip)
+        return render_template('results 2.0.html', categories=categories, ApplicationCategory=ApplicationCategory,
+                               column_names=df.columns.values,
+                               row_data=list(search_result.values.tolist()), picture_column="Picture",
+                               description_column="Description", name_column="Name", zip=zip)
     else:
         print(df)
-        return render_template("searchbar.html",categories=categories,ApplicationCategory=ApplicationCategory,column_names=df.columns.values,
-        row_data=list(df.values.tolist()), picture_column="Picture",description_column="Description",name_column="Name", zip=zip)
+        return render_template("searchbar.html", categories=categories, ApplicationCategory=ApplicationCategory,
+                               column_names=df.columns.values,
+                               row_data=list(df.values.tolist()), picture_column="Picture",
+                               description_column="Description", name_column="Name", zip=zip)
 
 
 def msearch(keyword, dataframe):
@@ -95,7 +119,7 @@ def msearch(keyword, dataframe):
     return search_result
 
 
-def mfilter(dataframe, cat ,keyword):
+def mfilter(dataframe, cat, keyword):
     search_result = search.filter(dataframe, cat, keyword)
     return search_result
 
@@ -131,11 +155,11 @@ def cate():
         print(category)
         print(appcategory)
         print(search_string)
-        data = mfilter(data,'IT Category', category)
+        data = mfilter(data, 'IT Category', category)
         data = data.reset_index()
         del data['index']
         print(data)
-        data = mfilter(data,'ApplicationCategory', appcategory)
+        data = mfilter(data, 'ApplicationCategory', appcategory)
         data = data.reset_index()
         del data['index']
         print(data)
@@ -149,7 +173,6 @@ def cate():
         return render_template("searchbar.html", categories=categories, ApplicationCategory=ApplicationCategory)
     print("Hi")
     return
-
 
 
 @app.route('/dropdown', methods=["POST", "GET"])
@@ -167,7 +190,6 @@ def dropdown():
     else:
         return render_template('test.html', categories=categories, Colum=Colum,
                                ApplicationCategory=ApplicationCategory)
-
 
 
 if __name__ == '__main__':

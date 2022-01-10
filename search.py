@@ -5,7 +5,7 @@
 from os import sep
 import pandas as pd
 
-data2 = pd.read_excel('output.xlsx', index_col=0)
+#data2 = pd.read_excel('output.xlsx', index_col=0)
 #print(data2)
 
 
@@ -92,6 +92,9 @@ def search(keyword, Dataframe):
     try:
         ranked_search = searched.sort_values("sum", ascending=False)
         ranked_search = ranked_search.reset_index(inplace=False)
+        ranked_search = ranked_search.drop(
+            columns=['index', "Name_search", "Description_search", "Abstract_en_search", "Abstract_de_search",
+                     "ApplicationCategory_search", "IT Category_search", "sum"])
         out = ranked_search
         #print (out)
         return out
