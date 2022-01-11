@@ -5,7 +5,7 @@
 from os import sep
 import pandas as pd
 
-data2 = pd.read_excel('output.xlsx', index_col=0)
+#data2 = pd.read_excel('output.xlsx', index_col=0)
 #print(data2)
 
 
@@ -88,7 +88,11 @@ def search(keyword, Dataframe):
                                 searched.loc[searched.index[i],'ApplicationCategory_search'].count(search2)
         for i in searched.index:
             searched.loc[searched.index[i],'sum'] = searched.loc[searched.index[i],'sum1'] + searched.loc[searched.index[i],'sum2']
-
+    #for i in searched.index:
+    #    if 'nan' in searched.loc[searched.index[i],'Description']:
+    #        searched.loc[searched.index[i],'Description'] = searched.loc[searched.index[i],'Abstract_en']
+    #    else:
+    #        searched.loc[searched.index[i],'Description'] = searched.loc[searched.index[i],'Description']
     try:
         ranked_search = searched.sort_values("sum", ascending=False)
         ranked_search = ranked_search.reset_index(inplace=False)

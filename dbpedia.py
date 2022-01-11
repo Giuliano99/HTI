@@ -149,13 +149,24 @@ def append_DBpedia_data(df):
             print('prase error for', df.iloc[i]['Name'])
     return df
 
-dbpdf = append_DBpedia_data(df)
+#dbpdf = append_DBpedia_data(df)
 
-print(dbpdf)
-dbpdf.to_excel("output.xls")
+#print(dbpdf)
+#dbpdf.to_excel("output.xlsx")
 
-data2 = pd.read_excel('output.xlsx', index_col=0)  
+data2 = pd.read_excel('output.xls', index_col=0)  
 #print(data2)
+def prep_dataframe(df):
+    for i in df.index:
+        if type(df.loc[df.index[i],'Description']) == float:
+            df.loc[df.index[i],'Description'] = df.loc[df.index[i],'Abstract_en']
+        else:
+            df.loc[df.index[i],'Description'] = df.loc[df.index[i],'Description']
+    return df
+
+
+df3 = prep_dataframe(data2)
+df3.to_excel('output.xlsx')
 
 #choose language for abstract
 def choose_language(df, Name, label):
