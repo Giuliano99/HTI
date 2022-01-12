@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+        {% block content %}
+        {% for row in row_data %}
+        
+        <!-- <div class="card">
+            {% for col, row_ in zip(column_names, row) %}
+
+            {% if col == picture_column %}
+            <img src= {{row_}} alt="imagen"/>
+            {% endif %}
+
+            {% if col == name_column %}
+            <h4>{{row_}}</h4>
+            {% endif %}
+
+            {% if col == description_column %}
+            <h5>{{row_}}</h5>
+            {% endif %}
+            {% endfor %}
+            <a href="#">Read more</a>
+        </div> -->
+
+        
+        {% endfor %}
+        </div>
+
+        
+        
+        {% endblock  %}

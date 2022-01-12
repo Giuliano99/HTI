@@ -94,10 +94,10 @@ def home():  # put application's code here
         search_result = data
 
         print(search_result)
-        return render_template('results 2.0.html', categories=categories, ApplicationCategory=ApplicationCategory,
+        return render_template('results2.0.html', categories=categories, ApplicationCategory=ApplicationCategory,
                                column_names=df.columns.values,
                                row_data=list(search_result.values.tolist()), picture_column="Picture",
-                               description_column="Description", name_column="Name", zip=zip)
+                               description_column="Description",name_column="Name", zip=zip)
     else:
         print(df)
         return render_template("searchbar.html", categories=categories, ApplicationCategory=ApplicationCategory,
@@ -186,3 +186,13 @@ def dropdown():
 
 if __name__ == '__main__':
     app.run(host="127.0.0.1", port=8080, debug=True)
+
+
+@app.route('/ReadMore', methods=["POST", "GET"])
+def readMore():
+    Colum = ['IT Category', 'ApplicationCategory']
+    return render_template('resultsAll.html', categories=categories, ApplicationCategory=ApplicationCategory,
+                               column_names=df.columns.values,
+                               row_data=list(search_result.values.tolist()), picture_column="Picture",
+                               description_column="Description", service_column="Service Advisers", reInvoicingcolumn="Re-invoicing", name_column="Name", zip=zip)
+
