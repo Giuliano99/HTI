@@ -59,8 +59,16 @@
             {% if col == description_column %}
             <h5>{{row_}}</h5>
             {% endif %}
+
+            {% if col == name_column %}
+            <form action="ReadMore" method="post">
+                <button type="submit" value= "{{row_}}"   name="readmore">
+                    {{"Read more"}}
+                </button>
+            </form>
+            {% endif %}
+
             {% endfor %}
-            <a href="{{readMore}}">Read more</a>
         </div>
 
         

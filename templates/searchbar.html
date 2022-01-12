@@ -61,15 +61,14 @@
             {% endif %}
 
             {% if col == name_column %}
-            <form method="post">
-                <button type="submit" value={{ row_ }}, name="software_name">
-                    <a href="#">Read more</a>
+            <form action="ReadMore" method="post">
+                <button type="submit" value= "{{row_}}"   name="readmore">
+                    {{"Read more"}}
                 </button>
             </form>
             {% endif %}
-            
+
             {% endfor %}
-            <a href="#">Read more</a>
         </div>
 
         

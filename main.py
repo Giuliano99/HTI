@@ -75,7 +75,6 @@ def home():  # put application's code here
             category = request.form.get('categories')
             appcategory = request.form.get('appcategories')
             search_string = request.form.get('search')
-            #softwaer_name = request.form.get('search')
 
 
             data = mfilter(data, 'IT Category', category)
@@ -92,11 +91,6 @@ def home():  # put application's code here
             data = data.reset_index(drop=True)
             if data.empty:
                 return render_template('searchfail.html', categories=categories, ApplicationCategory=ApplicationCategory)
-
-            #data = readMore(data, 'ApplicationCategory', softwaer_name)
-            #data = data.reset_index(drop=True)
-            #if data.empty:
-            #    return render_template('searchfail.html', categories=categories, ApplicationCategory=ApplicationCategory)
 
             search_result = data
 
@@ -127,10 +121,21 @@ def mfilter(dataframe, cat, keyword):
     return search_result
 
 @app.route('/ReadMore', methods=["POST", "GET"])
-def readMore(df, keyword):
-    data = df
-    search_result = search.filter(data, 'Name', keyword)
-    return search_result
+def readMore():
+    if request.method == "POST":
+        data = df
+        softwaer_name = request.form.get('readmore')
+        print(softwaer_name)
+        search_result = search.filter(data, 'Name', softwaer_name)
+        return render_template('resultsAll.html', categories=categories, ApplicationCategory=ApplicationCategory,
+                                column_names=df.columns.values,
+                                row_data=list(search_result.values.tolist()), picture_column="Picture",
+                                description_column="Description",name_column="Name", zip=zip)
+    else:
+        return render_template("searchbar.html", categories=categories, ApplicationCategory=ApplicationCategory,
+                                column_names=df.columns.values,
+                                row_data=list(df.values.tolist()), picture_column="Picture",
+                                description_column="Description", name_column="Name", zip=zip)
 
 
 @app.route('/redirect', methods=["POST", "GET"])
