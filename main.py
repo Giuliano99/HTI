@@ -69,42 +69,46 @@ ApplicationCategory = ['All', 'Access Mgmt. Software', 'Analysation software', '
 
 @app.route('/', methods=["POST", "GET"])
 def home():  # put application's code here
+    try:
+        if request.method == "POST":
+            data = df
+            category = request.form.get('categories')
+            appcategory = request.form.get('appcategories')
+            search_string = request.form.get('search')
 
-    if request.method == "POST":
-        data = df
-        category = request.form.get('categories')
-        appcategory = request.form.get('appcategories')
-        search_string = request.form.get('search')
+            data = mfilter(data, 'IT Category', category)
+            data = data.reset_index(drop=True)
+            if data.empty:
+                return render_template('searchfail.html', categories=categories, ApplicationCategory=ApplicationCategory)
 
-        data = mfilter(data, 'IT Category', category)
-        data = data.reset_index(drop=True)
-        if data.empty:
-            return render_template('searchfail.html', categories=categories, ApplicationCategory=ApplicationCategory)
+            data = mfilter(data, 'ApplicationCategory', appcategory)
+            data = data.reset_index(drop=True)
+            if data.empty:
+                return render_template('searchfail.html', categories=categories, ApplicationCategory=ApplicationCategory)
 
-        data = mfilter(data, 'ApplicationCategory', appcategory)
-        data = data.reset_index(drop=True)
-        if data.empty:
-            return render_template('searchfail.html', categories=categories, ApplicationCategory=ApplicationCategory)
+            data = msearch(search_string, data)
+            data = data.reset_index(drop=True)
+            if data.empty:
+                return render_template('searchfail.html', categories=categories, ApplicationCategory=ApplicationCategory)
 
-        data = msearch(search_string, data)
-        data = data.reset_index(drop=True)
-        if data.empty:
-            return render_template('searchfail.html', categories=categories, ApplicationCategory=ApplicationCategory)
+            search_result = data
 
-        search_result = data
-
-        print(search_result)
-        return render_template('results2.0.html', categories=categories, ApplicationCategory=ApplicationCategory,
-                               column_names=df.columns.values,
-                               row_data=list(search_result.values.tolist()), picture_column="Picture",
-                               description_column="Description",name_column="Name", zip=zip)
-    else:
-        print(df)
+            #print(search_result)
+            return render_template('results2.0.html', categories=categories, ApplicationCategory=ApplicationCategory,
+                                column_names=df.columns.values,
+                                row_data=list(search_result.values.tolist()), picture_column="Picture",
+                                description_column="Description",name_column="Name", zip=zip)
+        else:
+            #print(df)
+            return render_template("searchbar.html", categories=categories, ApplicationCategory=ApplicationCategory,
+                                column_names=df.columns.values,
+                                row_data=list(df.values.tolist()), picture_column="Picture",
+                                description_column="Description", name_column="Name", zip=zip)
+    except:
         return render_template("searchbar.html", categories=categories, ApplicationCategory=ApplicationCategory,
-                               column_names=df.columns.values,
-                               row_data=list(df.values.tolist()), picture_column="Picture",
-                               description_column="Description", name_column="Name", zip=zip)
-
+                                column_names=df.columns.values,
+                                row_data=list(df.values.tolist()), picture_column="Picture",
+                                description_column="Description", name_column="Name", zip=zip)
 
 def msearch(keyword, dataframe):
     search_result = search.search(keyword, dataframe)
@@ -183,16 +187,18 @@ def dropdown():
         return render_template('test.html', categories=categories, Colum=Colum,
                                ApplicationCategory=ApplicationCategory)
 
+@app.route('/ReadMore', methods=["POST", "GET"])
+def readMore():
+    data = df
+    softwaer_name = request.form.get('search')
+    search_result = search.filter(data, 'Name', softwaer_name)
+    return render_template('results_readMore.html', categories=categories, ApplicationCategory=ApplicationCategory,
+                               column_names=search_result.columns.values,row_data=list(search_result.values.tolist()), picture_column="Picture",
+                               description_column="Description", service_column="Service Advisers", reInvoicingcolumn="Re-invoicing", name_column="Name", zip=zip)
+
 
 if __name__ == '__main__':
     app.run(host="127.0.0.1", port=8080, debug=True)
 
 
-@app.route('/ReadMore', methods=["POST", "GET"])
-def readMore():
-    Colum = ['IT Category', 'ApplicationCategory']
-    return render_template('resultsAll.html', categories=categories, ApplicationCategory=ApplicationCategory,
-                               column_names=df.columns.values,
-                               row_data=list(search_result.values.tolist()), picture_column="Picture",
-                               description_column="Description", service_column="Service Advisers", reInvoicingcolumn="Re-invoicing", name_column="Name", zip=zip)
 
