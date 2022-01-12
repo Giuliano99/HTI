@@ -75,6 +75,8 @@ def home():  # put application's code here
             category = request.form.get('categories')
             appcategory = request.form.get('appcategories')
             search_string = request.form.get('search')
+            #softwaer_name = request.form.get('search')
+
 
             data = mfilter(data, 'IT Category', category)
             data = data.reset_index(drop=True)
@@ -90,6 +92,11 @@ def home():  # put application's code here
             data = data.reset_index(drop=True)
             if data.empty:
                 return render_template('searchfail.html', categories=categories, ApplicationCategory=ApplicationCategory)
+
+            #data = readMore(data, 'ApplicationCategory', softwaer_name)
+            #data = data.reset_index(drop=True)
+            #if data.empty:
+            #    return render_template('searchfail.html', categories=categories, ApplicationCategory=ApplicationCategory)
 
             search_result = data
 
@@ -117,6 +124,12 @@ def msearch(keyword, dataframe):
 
 def mfilter(dataframe, cat, keyword):
     search_result = search.filter(dataframe, cat, keyword)
+    return search_result
+
+@app.route('/ReadMore', methods=["POST", "GET"])
+def readMore(df, keyword):
+    data = df
+    search_result = search.filter(data, 'Name', keyword)
     return search_result
 
 
@@ -187,14 +200,7 @@ def dropdown():
         return render_template('test.html', categories=categories, Colum=Colum,
                                ApplicationCategory=ApplicationCategory)
 
-@app.route('/ReadMore', methods=["POST", "GET"])
-def readMore():
-    data = df
-    softwaer_name = request.form.get('search')
-    search_result = search.filter(data, 'Name', softwaer_name)
-    return render_template('results_readMore.html', categories=categories, ApplicationCategory=ApplicationCategory,
-                               column_names=search_result.columns.values,row_data=list(search_result.values.tolist()), picture_column="Picture",
-                               description_column="Description", service_column="Service Advisers", reInvoicingcolumn="Re-invoicing", name_column="Name", zip=zip)
+
 
 
 if __name__ == '__main__':
