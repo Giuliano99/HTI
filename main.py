@@ -128,9 +128,9 @@ def readMore():
         print(softwaer_name)
         search_result = search.filter(data, 'Name', softwaer_name)
         return render_template('resultsAll.html', categories=categories, ApplicationCategory=ApplicationCategory,
-                                column_names=df.columns.values,
-                                row_data=list(search_result.values.tolist()), picture_column="Picture",
-                                description_column="Description",name_column="Name", zip=zip)
+                                column_names=df.columns.values, row_data=list(search_result.values.tolist()), picture_column="Picture",
+                                description_column="Description",name_column="Name", Domain_coulum="Business Domain", ApplicationCategory_column="ApplicationCategory",
+                                Re_invoicing_column="Re-invoicing", Abstract_en_column="Abstract_en", Abstract_de_column="Abstract_de", Abstract_it_column="Abstract_it", Abstract_fr_column="Abstract_fr", zip=zip)
     else:
         return render_template("searchbar.html", categories=categories, ApplicationCategory=ApplicationCategory,
                                 column_names=df.columns.values,
