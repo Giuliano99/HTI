@@ -32,7 +32,7 @@ df = data2
 categories = ['All', 'Basic Applications', 'ERP', 'PLM']
 ApplicationCategory = ['All', 'Access Mgmt. Software', 'Analysation software', 
                        'Asset Mgmt. Software', 'Audition software', 'Automatisation software',
-                       'Bug and issue tracking software',
+                       'Bug and issue tracking software', 'Buisness Intelligence',
                        'Building Mgmt.', 
                        'Calculation software', 'Call management software', 'Collaborative software',
                        'Computer graphic software 3D', 'Conveyor system engeneering tool', 'Customer Portal', 
