@@ -37,8 +37,7 @@ ApplicationCategory = ['All', 'Access Mgmt. Software', 'Analysation software',
                        'Calculation software', 'Call management software', 'Collaborative software',
                        'Computer graphic software 3D', 'Conveyor system engeneering tool', 'Customer Portal', 
                        'Dangerous good Mgmt. software', 
-                       'DevOps', 'Digital Signage Software',
-                        'E-Commerce Software', 
+                       'DevOps', 'Digital Signage Software','E-Commerce Software', 
                        'Electronic Signature Software', 'Export control Mgmt.', 
                        'Financial Consolidation Software', 'Fleet management software',
                        'FMEA Functional Safety Software', 'Marketing Automation', 'MindMapping', 'Office Suite',
@@ -121,7 +120,7 @@ def readMore():
     if request.method == "POST":
         data = df
         softwaer_name = request.form.get('readmore')
-        print(softwaer_name)
+        #print(softwaer_name)
         search_result = search.filter(data, 'Name', softwaer_name)
         return render_template('resultsAll.html', categories=categories, ApplicationCategory=ApplicationCategory,
                                 column_names=df.columns.values, row_data=list(search_result.values.tolist()), picture_column="Picture",

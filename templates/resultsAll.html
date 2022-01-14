@@ -6,47 +6,49 @@
         {% for row in row_data %}
 
             {% for col, row_ in zip(column_names, row) %}
-
+            <div>
             {% if col == picture_column %}
-            <img src= {{row_}} alt="imagen"/>
+            <img width= "200" src= {{row_}} alt="imagen"/>
             {% endif %}
+            </div>
 
 
             {% if col == name_column %}
-            <h4>{{row_}}</h4>
+            <p><b><big>{{row_}}</big></b></p>
             {% endif %}
 
+            <hr/>
 
             {% if col == description_column %}
-            <h5>{{row_}}</h5>
+            <p>{{row_}}</p>
             {% endif %}
 
             {% if col == Domain_coulum %}
-            <h5>{{row_}}</h5>
+            <p>{{row_}}</p>
             {% endif %}
 
             {% if col == ApplicationCategory_column %}
-            <h5>{{row_}}</h5>
+            <p>{{row_}}</p>
             {% endif %}
 
             {% if col == Re_invoicing_column %}
-            <h5>{{row_}}</h5>
+            <p>{{row_}}</p>
             {% endif %}
 
             {% if col == Abstract_en_column %}
-            <h5>{{row_}}</h5>
+            <p>{{row_}}</p>
             {% endif %}
 
             {% if col == Abstract_de_column %}
-            <h5>{{row_}}</h5>
+            <p>{{row_}}</p>
             {% endif %}
 
             {% if col == Abstract_it_column %}
-            <h5>{{row_}}</h5>
+            <p>{{row_}}</p>
             {% endif %}
 
             {% if col == Abstract_fr_column %}
-            <h5>{{row_}}</h5>
+            <p>{{row_}}</p>
             {% endif %}
 
             {% if col == name_column %}
@@ -60,11 +62,10 @@
             {% endif %}
 
             {% endfor %}
-        </div>
-
+            </div>
         
         {% endfor %}
-        </div> 
+        </div>
 
 
         
