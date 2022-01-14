@@ -30,42 +30,38 @@ data2 = pd.read_excel('output.xls', index_col=0)
 df = data2
 
 categories = ['All', 'Basic Applications', 'ERP', 'PLM']
-ApplicationCategory = ['All', 'Access Mgmt. Software', 'Analysation software', 'Animation software',
-                       'ApplicationCategory',
+ApplicationCategory = ['All', 'Access Mgmt. Software', 'Analysation software', 
                        'Asset Mgmt. Software', 'Audition software', 'Automatisation software',
-                       'Bug and issue tracking software', 'BIM',
-                       'Building Mgmt.', 'BI', 'BPM',
+                       'Bug and issue tracking software',
+                       'Building Mgmt.', 
                        'Calculation software', 'Call management software', 'Collaborative software',
-                       '2D CAD', '3D CAD',
-                       'CAE', 'CAM',
-                       'CAS', 'Computer graphic software 3D',
-                       'CAT', 'CIM',
-                       'CMS', 'Conveyor system engeneering tool',
-                       'CPM', 'Customer Portal', 'CRM',
-                       'CSM', 'CDP',
-                       'Dangerous good Mgmt. software', 'Data Mgmt. software',
-                       'DevOps', 'DAM', 'Digital Signage Software',
-                       'DMS', 'E-Commerce Software', 'EDA',
-                       'Electronic Signature Software', 'EAM',
-                       'ELM', 'EOM',
-                       'ERP', 'Export control Mgmt.', 'File Sharing System',
+                       'Computer graphic software 3D', 'Conveyor system engeneering tool', 'Customer Portal', 
+                       'Dangerous good Mgmt. software', 
+                       'DevOps', 'Digital Signage Software',
+                        'E-Commerce Software', 
+                       'Electronic Signature Software', 'Export control Mgmt.', 
                        'Financial Consolidation Software', 'Fleet management software',
-                       'FMEA Functional Safety Software',
-                       'GIS', 'Graphics + Design apps',
-                       'HCM', 'IDE',
-                       'Lean Project Mgmt. Software', 'LMS',
-                       'MDC',
-                       'MES', 'Marketing Automation', 'MindMapping', 'Office Suite',
-                       'Operating system', 'PMS', 'Payroll Software', 'PDF-Software',
-                       'PLM Suite', 'PDC', 'Project Management Software',
-                       'Recruiting Software', 'Remote administration software', 'RDO',
+                       'FMEA Functional Safety Software', 'Marketing Automation', 'MindMapping', 'Office Suite',
+                       'Operating system', 'Payroll Software', 'PDF-Software',
+                       'PLM Suite', 'Project Management Software',
+                       'Recruiting Software', 'Remote administration software', 
                        'Sales Software', 'Screenshot software', 'Simulaton Software', 'Staff Planning',
-                       'Statistical software', 'Structural engineering software',
-                       'SCADA',
-                       'SCM', 'SDO', 'Tax Mgmt. software',
-                       'Time Mgmt. Software', 'TMS', 'Travel & Expense Mgmt. Software',
-                       'TMS', 'Warehouse Management System', 'WMS']
-
+                       'Statistical software', 'Structural engineering software', 'Tax Mgmt. software',
+                       'Time Mgmt. Software', 'Travel & Expense Mgmt. Software', 'Warehouse Management System']
+# not used but maby needed sometimes: 'Animation software','ApplicationCategory', 'BIM', 'BI', 'BPM',
+#  '2D CAD', '3D CAD', 'CAE', 'CAM', 'CAS', 'CAT', 'CIM','CMS','CPM', 'CRM',  'CSM', 'CDP', 'Data Mgmt. software', 'DAM', 'EAM', 'Lean Project Mgmt. Software',                   
+#                       'DMS','ELM', 'EOM','ERP','EDA','File Sharing System','GIS', 'Graphics + Design apps', 'WMS','SCADA', 'PMS', 'PDC', SCM', 'SDO', 'LMS','MDC','MES','HCM', 'IDE','RDO','TMS','TMS',
+                       
+                       
+                       
+                       
+                       
+                      
+                       
+                        
+                       
+                       
+                        
 
 @app.route('/', methods=["POST", "GET"])
 def home():  # put application's code here
