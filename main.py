@@ -149,56 +149,25 @@ def select_software():  # put application's code here
         msg = Message('Ticket request', sender='htigroup04@gmail.com', recipients=['htigroup04@gmail.com'])
         msg.body = out
         mail.send(msg)
-        return render_template("request_confirmation.html", out=out)
+        return render_template("request_confirmation.html", out=out, categories=categories, ApplicationCategory=ApplicationCategory,
+                                column_names=df.columns.values,
+                                picture_column="Picture",
+                                description_column="Description",name_column="Name", zip=zip)
     else:
         return render_template("searchbar.html", categories=categories)
 
-
-@app.route('/cat', methods=["POST", "GET"])
-def cate():
-    data = df
+@app.route('/confirmation', methods=["POST", "GET"])
+def confirm_software():  # put application's code here
     if request.method == "POST":
-        category = request.form.get('categories')
-        appcategory = request.form.get('appcategories')
-        search_string = request.form.get('search')
-        print(category)
-        print(appcategory)
-        print(search_string)
-        data = mfilter(data, 'IT Category', category)
-        data = data.reset_index()
-        del data['index']
-        print(data)
-        data = mfilter(data, 'ApplicationCategory', appcategory)
-        data = data.reset_index()
-        del data['index']
-        print(data)
-        data = msearch(search_string, data)
-        data = data.reset_index()
-        del data['index']
-        print("Result")
-        print(data)
-        return render_template("searchbar.html", categories=categories, ApplicationCategory=ApplicationCategory)
+        software = request.form["software_name"]
+        out = (f"Do you really want to order: {software}")
+        return render_template("order_confirmation.html", out=out, categories=categories, ApplicationCategory=ApplicationCategory,
+                                column_names=df.columns.values,
+                                picture_column="Picture", software=software,
+                                description_column="Description",name_column="Name", zip=zip)
     else:
-        return render_template("searchbar.html", categories=categories, ApplicationCategory=ApplicationCategory)
-    print("Hi")
-    return
+        return render_template("searchbar.html", categories=categories)
 
-
-@app.route('/dropdown', methods=["POST", "GET"])
-def dropdown():
-    Colum = ['IT Category', 'ApplicationCategory']
-    if request.method == "POST":
-        Colum = 'IT Category'
-        category = request.form.get('categories')
-        appcategory = request.form.get('appcategories')
-        search_string = request.form.get('search')
-        search_result = search.search(search_string, df)
-        print(search_result)
-        return render_template('test.html', categories=categories, Colum=Colum,
-                               ApplicationCategory=ApplicationCategory)
-    else:
-        return render_template('test.html', categories=categories, Colum=Colum,
-                               ApplicationCategory=ApplicationCategory)
 
 
 

@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<p>{{out}}</p>
-<form action="redirect" method="post">
-    <p><input type = "submit" value="Go Back" /></p>
-</form>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+    <body>
+    <p><h4>{{ out }}</h4></p>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <form action="redirect" method="post">
+        <p><input class="button button1" type="submit" value="Go Back"/></p>
+    </form>
+
+    </body>
+    </html>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <body>
+    <p><h4>{{ out }}</h4></p>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <form action="mail" method="post">
+        <button type="submit" value="{{software}}", name="software_name">
+            Yes
+        </button>
+    </form>
+    &nbsp;&nbsp;
+    <form action="redirect" method="post">
+        <p><input type="submit" value="Go Back"/></p>
+    </form>
+
+    </body>
+    </html>
+{% endblock %}
