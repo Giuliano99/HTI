@@ -1,14 +1,16 @@
 {% extends "base.html" %}
-
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 {% block content %}
     <body>
     <p><h4>{{ out }}</h4></p>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <form action="mail" method="post">
-        <button type="submit" value="{{software}}", name="software_name">
+        <button type="submit" class="btn btn-1 btn-sep icon-info" value="{{software}}", name="software_name">
             Yes
         </button>
     </form>
+    <p></p>
     &nbsp;&nbsp;
     <form action="redirect" method="post">
         <p><input type="submit" value="Go Back"/></p>
