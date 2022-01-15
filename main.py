@@ -101,10 +101,7 @@ def home():  # put application's code here
                                 row_data=list(df.values.tolist()), picture_column="Picture",
                                 description_column="Description", name_column="Name", zip=zip)
     except:
-        return render_template("searchbar.html", categories=categories, ApplicationCategory=ApplicationCategory,
-                                column_names=df.columns.values,
-                                row_data=list(df.values.tolist()), picture_column="Picture",
-                                description_column="Description", name_column="Name", zip=zip)
+        return render_template('searchfail.html', categories=categories, ApplicationCategory=ApplicationCategory)
 
 def msearch(keyword, dataframe):
     search_result = search.search(keyword, dataframe)

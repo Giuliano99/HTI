@@ -1,13 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <body>
-    <p><h4>{{ out }}</h4></p>
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    <form action="redirect" method="post">
-        <p><input class="button button1" type="submit" value="Go Back"/></p>
-    </form>
+    <ndiv>
+        <body>
+        <p><h4>{{ out }}</h4></p>
+        <div class="page-section" align="center">
+            <form action="redirect" method="post">
+                <p><input class="button button2" type="submit" value="Back to Search"/></p>
+            </form>
+        </div>
+        </body>
 
-    </body>
+    </ndiv>
     </html>
 {% endblock %}
