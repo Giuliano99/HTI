@@ -2,25 +2,25 @@
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 {% block content %}
+    <ndiv>
+
+        <p><h4>{{ out }}</h4>
 
 
-    <p><h4>{{ out }}</h4></p>
-    &nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="page-section" align="center">
+            <form action="mail" method="post">
+                <button type="submit" value="{{ software }}" , name="software_name">
+                    Yes
+                </button>
+            </form>
+            &nbsp;&nbsp;
+            <form action="redirect" method="post">
+                <button type="submit">
+                    No, back to Search
+                </button>
 
-
-    <form action="mail" method="post">
-        <button type="submit" value="{{ software }}" , name="software_name">
-            Yes
-        </button>
-    </form>
-    <p></p>
-    &nbsp;&nbsp;
-
-    <form action="redirect" method="post">
-        <button type="submit">
-            Go Back
-        </button>
-        </p>
-    </form>
+            </form>
+        </div>
+    </ndiv>
     </html>
 {% endblock %}

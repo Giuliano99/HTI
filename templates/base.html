@@ -44,22 +44,22 @@
             <p>
             <div class="form-group">
                 <br class="input-group">
-                    <span class="input-group-addon"> Select IT Category: </span>
-                    <select name="categories" method="GET">
-                        <option value="{{ categories[0] }}" selected>{{ categories[0] }}</option>
-                        {% for category in categories[1:] %}
-                            <option value="{{ category }}">{{ category }}</option>
-                        {% endfor %}
-                    </select>
-                         &nbsp;&nbsp;
-                    <span class="input-group-addon"> Select Application Category: </span>
-                    <select name="appcategories" method="GET">
-                        <option value="{{ ApplicationCategory[0] }}" selected>{{ ApplicationCategory[0] }}</option>
-                        {% for appcategory in ApplicationCategory[1:] %}
-                            <option value="{{ appcategory }}">{{ appcategory }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
+                <span class="input-group-addon"> Select IT Category: </span>
+                <select name="categories" method="GET">
+                    <option value="{{ categories[0] }}" selected>{{ categories[0] }}</option>
+                    {% for category in categories[1:] %}
+                        <option value="{{ category }}">{{ category }}</option>
+                    {% endfor %}
+                </select>
+                &nbsp;&nbsp;
+                <span class="input-group-addon"> Select Application Category: </span>
+                <select name="appcategories" method="GET">
+                    <option value="{{ ApplicationCategory[0] }}" selected>{{ ApplicationCategory[0] }}</option>
+                    {% for appcategory in ApplicationCategory[1:] %}
+                        <option value="{{ appcategory }}">{{ appcategory }}</option>
+                    {% endfor %}
+                </select>
+            </div>
             </p>
             <p>
                 <label for="search">Search</label>
