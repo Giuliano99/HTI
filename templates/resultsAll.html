@@ -4,70 +4,63 @@
         <!--CARD-->
         <div class="container">
         {% for row in row_data %}
-
+        <div class="card2" >
             {% for col, row_ in zip(column_names, row) %}
-            <div>
+            
             {% if col == picture_column %}
-            <img width= "200" src= {{row_}} alt="imagen"/>
+            <img width= "300" src= {{row_}} alt="imagen"/>
             {% endif %}
-            </div>
-
-
+           
             {% if col == name_column %}
-            <p><b><big>{{row_}}</big></b></p>
+            <h4>{{row_}}</h4>
             {% endif %}
-
-            <hr/>
 
             {% if col == description_column %}
-            <p>{{row_}}</p>
+            <h5>{{row_}}</h5>
             {% endif %}
 
             {% if col == Domain_coulum %}
-            <p>{{row_}}</p>
+            <h5>{{row_}}</h5>
             {% endif %}
 
-            {% if col == ApplicationCategory_column %}
-            <p>{{row_}}</p>
+            <!--{% if col == ApplicationCategory_column %}
+            <h5>{{row_}}</h5>
             {% endif %}
 
             {% if col == Re_invoicing_column %}
-            <p>{{row_}}</p>
+            <h5>{{row_}}</h5>
             {% endif %}
 
             {% if col == Abstract_en_column %}
-            <p>{{row_}}</p>
+            <h5>{{row_}}</h5>
             {% endif %}
 
             {% if col == Abstract_de_column %}
-            <p>{{row_}}</p>
+            <h5>{{row_}}</h5>
             {% endif %}
 
             {% if col == Abstract_it_column %}
-            <p>{{row_}}</p>
+            <h5>{{row_}}</h5>
             {% endif %}
 
             {% if col == Abstract_fr_column %}
-            <p>{{row_}}</p>
-            {% endif %}
+            <h5>{{row_}}</h5>
+            {% endif %}-->
 
             {% if col == name_column %}
-            <td>
             <form action="confirmation" method="post">
                 <button type="submit" value="{{ row_ }}", name="software_name">
                     {{ row_ }}
                 </button>
             </form>
-            </td>
             {% endif %}
 
             {% endfor %}
-            </div>
-        
+        </div>
+
+
         {% endfor %}
         </div>
 
 
-        
-        
         {% endblock  %}
