@@ -145,11 +145,14 @@ def select_software():  # put application's code here
         search_result = search.filter(data, 'Name', software)
         Service_ID = search_result.loc[search_result.index[0],'ServiceID']
         Service_Type = search_result.loc[search_result.index[0],'ServiceType']
-        out = (f" Dear Sir or Madam, You have requested via the HTI Application Catalogue the available software: {software} with the Service ID {Service_ID} belonging to the Service Type {Service_Type} of the Category (IT Category)")
+        IT_category = search_result.loc[search_result.index[0],'IT Category']
+        Re_invoicing = search_result.loc[search_result.index[0],'Re-invoicing']
+        shortmassage = (f"You have requested via the HTI Application Catalogue the available software: {software} with the Service ID {Service_ID} belonging to the Service Type '{Service_Type}' of the Category '{IT_category}' and the invoicing takes place via {Re_invoicing}.")
+        out = (f" Dear Sir or Madam, via the HTI Application Catalogue the software: {software} with the Service ID {Service_ID} belonging to the Service Type '{Service_Type}' of the Category '{IT_category}'")
         msg = Message('Ticket request', sender='htigroup04@gmail.com', recipients=['htigroup04@gmail.com'])
         msg.body = out
         mail.send(msg)
-        return render_template("request_confirmation.html", out=out, categories=categories, ApplicationCategory=ApplicationCategory,
+        return render_template("request_confirmation.html", out=shortmassage, categories=categories, ApplicationCategory=ApplicationCategory,
                                 column_names=df.columns.values,
                                 picture_column="Picture",
                                 description_column="Description",name_column="Name", zip=zip)
