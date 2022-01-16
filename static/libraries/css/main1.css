@@ -34,6 +34,18 @@ html, body {
     color: #4a4af3;
 }
 
+.button2 {
+    background-color: #4a4af3;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+}
+
+
+.button2:hover {
+    background-color: #047e15;
+    color: #ffffff;
+}
+
 body {
     width: 100%;
     height: 100%;
