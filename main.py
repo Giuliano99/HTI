@@ -140,8 +140,12 @@ def umleiten():  # put application's code here
 @app.route('/mail', methods=["POST", "GET"])
 def select_software():  # put application's code here
     if request.method == "POST":
+        data = df
         software = request.form["software_name"]
-        out = (f"You oredered {software}, congratulation")
+        search_result = search.filter(data, 'Name', software)
+        Service_ID = search_result.loc[search_result.index[0],'ServiceID']
+        Service_Type = search_result.loc[search_result.index[0],'ServiceType']
+        out = (f" Dear Sir or Madam, You have requested via the HTI Application Catalogue the available software: {software} with the Service ID {Service_ID} belonging to the Service Type {Service_Type} of the Category (IT Category)")
         msg = Message('Ticket request', sender='htigroup04@gmail.com', recipients=['htigroup04@gmail.com'])
         msg.body = out
         mail.send(msg)
