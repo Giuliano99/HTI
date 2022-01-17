@@ -2,7 +2,7 @@
 
         {% block content %}
         <!--CARD-->
-        <div class="container">
+        <div class="cardResult">
         {% for row in row_data %}
             {% for col, row_ in zip(column_names, row) %}
             
@@ -48,8 +48,8 @@
 
             {% if col == name_column %}
             <form action="confirmation" method="post">
-                <button type="submit" class="button button2" value="{{ row_ }}", name="software_name">
-                    {{ row_ }}
+                <button type="submit" class="btn btn-outline-primary" value="{{ row_ }}", name="software_name">
+                   Order {{ row_ }}
                 </button>
             </form>
             {% endif %}

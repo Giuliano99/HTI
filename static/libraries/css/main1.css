@@ -35,7 +35,7 @@ html, body {
 }
 
 .button2 {
-    background-color: #4a4af3;
+    background-color: #3a3939;
     color: #ffffff;
     border: 2px solid #ffffff;
 }
@@ -160,26 +160,17 @@ body {
     height: 55px;
 }
 
-.card2 {
-    display: flex;
+.cardResult {
     flex-direction: column;
-    width: 100%;
-    max-width: 1200px;
-    height: 430px;
+    width: 600px;
+    height: 400px;
+    border-radius: 8px;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     margin: 30px;
     text-align: center;
-    transition: all 0.25s;
 }
-
-.card2:hover {
-    transform: translateY(-15px);
-    box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
-}
-
-
-.card2 > img {
+.cardResult > img {
 
     max-height: 25%;
     height: auto;
@@ -187,14 +178,14 @@ body {
     order: 1;
 }
 
-.card2 > h4 {
+.cardResult > h4 {
     line-height: 40px;
     font-weight: 600;
     font-size: large;
     order: 2;
 }
 
-.card2 > h5 {
+.cardResult > h5 {
     margin: 10px;
     font-weight: 100;
     font-size: 15px;
@@ -203,38 +194,6 @@ body {
     text-align: left;
     overflow: auto;
     order: 3;
-}
-
-.card2> p {
-    padding: 330px;
-    height: 220px;
-    font-weight: 300;
-}
-
-.card2 > a {
-    font-weight: 500;
-    text-decoration: none;
-    color: #3498db
-}
-
-.card2 button {
-    background-color: white;
-    border: none;
-    color: #4a4af3;
-    padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-    order: 4;
-}
-
-.card2 button:hover {
-    background-color: #4a4af3; /* Green */
-    color: white;
 }
 /*#ribbon {
      background-color: lightgrey;*/

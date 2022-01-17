@@ -2,24 +2,23 @@
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 {% block content %}
-    <ndiv>
-
-        <p><h4>{{ out }}</h4>
-
-
+    <div class="alert alert-warning" role="alert">
+        <h4 class="alert-heading">Order confirmation </h4>
+        <hr>
+        <div class="alert alert-light" role="alert">
+        <p class="mb-0">{{ out }}?</p>
         <div class="page-section" align="center">
             <form action="mail" method="post">
-                <button type="submit" class="button button2" value="{{ software }}" , name="software_name">
+                <button type="submit" class="btn btn-outline-success" value="{{ software }}" , name="software_name">
                     Yes
                 </button>
             </form>
             &nbsp;&nbsp;
             <form action="redirect" method="post">
-                <button class="button button2" type="submit">
+                <button class="btn btn-outline-secondary" type="submit">
                     No, back to Search
                 </button>
             </form>
         </div>
-    </ndiv>
-    </html>
+        </div>
 {% endblock %}
