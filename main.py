@@ -16,10 +16,9 @@ app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
 
-#
+
 # path_serviceCatalog = "https://raw.githubusercontent.com/Giuliano99/HTI/test/IT%20Service%20Katalog.csv"
 # path_uri = "https://raw.githubusercontent.com/Giuliano99/HTI/test/uri.csv"
-#
 # serviceCatalog = pd.read_csv(path_serviceCatalog)
 # uri = pd.read_csv(path_uri)a
 
@@ -162,7 +161,10 @@ def select_software():  # put application's code here
         IT_category = search_result.loc[search_result.index[0],'IT Category']
         Re_invoicing = search_result.loc[search_result.index[0],'Re-invoicing']
         shortmassage = (f"You have requested via the HTI Application Catalogue the available software: {software} with the Service ID {Service_ID} belonging to the Service Type '{Service_Type}' of the Category '{IT_category}' and the invoicing takes place via {Re_invoicing}.")
-        out = (f" Dear Sir or Madam, via the HTI Application Catalogue the software: {software} with the Service ID {Service_ID} belonging to the Service Type '{Service_Type}' of the Category '{IT_category}'")
+        out = (f""" Dear Sir or Madam,
+        The following available software of the HTI Application Catalogue was requested from Max Musterman:
+        {software} with the Service ID {Service_ID} belonging to the Service Type '{Service_Type}' of the Category '{IT_category}' 
+        The relevant supervisor will receive a copy of this e-mail and may object to the request.""")
         msg = Message('Ticket request', sender='htigroup04@gmail.com', recipients=['htigroup04@gmail.com'])
         msg.body = out
         mail.send(msg)
