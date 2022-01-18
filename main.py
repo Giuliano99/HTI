@@ -47,6 +47,7 @@ ApplicationCategory = ['All', 'Access Mgmt. Software', 'Analysation software',
                        'Sales Software', 'Screenshot software', 'Simulaton Software', 'Staff Planning',
                        'Statistical software', 'Structural engineering software', 'Tax Mgmt. software',
                        'Time Mgmt. Software', 'Travel & Expense Mgmt. Software', 'Warehouse Management System']
+Languages = ['English', 'Deutsch', 'Français', 'Italiano']
 # not used but maby needed sometimes: 'Animation software','ApplicationCategory', 'BIM', 'BI', 'BPM',
 #  '2D CAD', '3D CAD', 'CAE', 'CAM', 'CAS', 'CAT', 'CIM','CMS','CPM', 'CRM',  'CSM', 'CDP', 'Data Mgmt. software', 'DAM', 'EAM', 'Lean Project Mgmt. Software',                   
 #                       'DMS','ELM', 'EOM','ERP','EDA','File Sharing System','GIS', 'Graphics + Design apps', 'WMS','SCADA', 'PMS', 'PDC', SCM', 'SDO', 'LMS','MDC','MES','HCM', 'IDE','RDO','TMS','TMS',
@@ -117,13 +118,26 @@ def readMore():
         data = df
         softwaer_name = request.form.get('readmore')
         #print(softwaer_name)
+        languages = request.form.get('Languages')
+        #print(languages)
+        Colum_Des = 'Description'
+        if languages == 'English':
+            Colum_Des = 'Description'
+        if languages == 'Deutsch':
+            Colum_Des = 'Abstract_de'
+        if languages == 'Français':
+            Colum_Des = 'Abstract_fr'
+        if languages == 'Italiano':
+            Colum_Des = 'Abstract_it'
         search_result = search.filter(data, 'Name', softwaer_name)
-        return render_template('resultsAll.html', categories=categories, ApplicationCategory=ApplicationCategory,
+        if data.empty:
+                return render_template('searchfail.html', categories=categories, ApplicationCategory=ApplicationCategory)
+        return render_template('resultsAll.html', categories=categories, ApplicationCategory=ApplicationCategory, Languages=Languages,
                                 column_names=df.columns.values, row_data=list(search_result.values.tolist()), picture_column="Picture",
-                                description_column="Description",name_column="Name", Domain_coulum="Business Domain", ApplicationCategory_column="ApplicationCategory",
+                                description_column=Colum_Des,name_column="Name", Domain_coulum="Business Domain", ApplicationCategory_column="ApplicationCategory",
                                 Re_invoicing_column="Re-invoicing", Abstract_en_column="Abstract_en", Abstract_de_column="Abstract_de", Abstract_it_column="Abstract_it", Abstract_fr_column="Abstract_fr", zip=zip)
     else:
-        return render_template("searchbar.html", categories=categories, ApplicationCategory=ApplicationCategory,
+        return render_template("searchbar.html", categories=categories, ApplicationCategory=ApplicationCategory, Languages=Languages,
                                 column_names=df.columns.values,
                                 row_data=list(df.values.tolist()), picture_column="Picture",
                                 description_column="Description", name_column="Name", zip=zip)
