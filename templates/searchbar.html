@@ -2,7 +2,10 @@
 
 {% block content %}
 
-
+<div class="title">
+    <h1>IT Service Catalog</h1>
+    <p class="lead">Here you will find all approved software that can be used in the HTI group</p>
+</div>
 <!--SEARCH-->
 &nbsp;
 <ndiv class="container">
@@ -34,7 +37,7 @@
                 <input type="search" name="search">
             </p>
             <p>
-                <input type="submit">
+                <input type="submit" class="btn btn-outline-secondary">
             </p>
         </form>
 
@@ -99,13 +102,15 @@
                         <h5>{{ row_ }}</h5>
                     {% endif %}
 
+                    <div class="buttonOrder">
                     {% if col == name_column %}
                         <form action="ReadMore" method="post">
-                            <button class="button" type="submit" value="{{ row_ }}" name="readmore">
-                                    {{ "Read more" }}
+                            <button type="submit" class="btn btn-outline-primary" value= "{{row_}}"   name="readmore">
+                                {{"Read more"}}
                             </button>
                         </form>
                     {% endif %}
+                    </div>
 
                 {% endfor %}
             </div>
