@@ -31,14 +31,14 @@
                     </div>
                     </p>
                     <p>
-                        <input type="submit">
+                        <center><input type="submit"></center> 
                     </p>
             </form>
         
         </div>
         
         <!--CARD-->
-        <div class="cardResult">
+        <center><div class="cardResult">
         {% for row in row_data %}
             {% for col, row_ in zip(column_names, row) %}
 
@@ -47,7 +47,7 @@
             {% endif %}
            
             {% if col == name_column %}
-            <h4>{{row_}}</h4>
+            <na4>{{row_}}</na4>
             {% endif %}
 
             {% if col == description_column %}
@@ -55,15 +55,15 @@
             {% endif %}
 
             {% if col == Domain_coulum %}
-            <h5>{{row_}}</h5>
+            <h5>Business Domain: {{row_}}</h5>
             {% endif %}
 
             {% if col == ApplicationCategory_column %}
-            <h5>{{row_}}</h5>
+            <h5>Application Category: {{row_}}</h5>
             {% endif %}
 
             {% if col == Re_invoicing_column %}
-            <h5>{{row_}}</h5>
+            <h5>Re-invoicing: {{row_}}</h5>
             {% endif %}
 
             <!--{% if col == Abstract_en_column %}
@@ -95,7 +95,7 @@
 
 
         {% endfor %}
-        </div>
+        </div></center>
 
 
         {% endblock  %}

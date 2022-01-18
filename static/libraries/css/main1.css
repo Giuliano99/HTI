@@ -1,4 +1,4 @@
-﻿h1, h2, h3, h4, h5, .amiibo-name {
+﻿h1, h2, h3, h4, h5, .amiibo-name , na4 {
     font-family: 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -161,6 +161,7 @@ body {
 }
 
 .cardResult {
+    display: flex;
     flex-direction: column;
     width: 800px;
     height: 600px;
@@ -178,7 +179,7 @@ body {
     order: 1;
 }
 
-.cardResult > h4 {
+.cardResult > na4 {
     line-height: 40px;
     font-weight: 600;
     font-size: large;
