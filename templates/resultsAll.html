@@ -8,13 +8,12 @@
                     <p>
                     <div class="form-group">
                         <br class="input-group">
-                        <span class="input-group-addon"> Select the language for the description: </span>
+                        <span class="input-group-addon">Select the language for the description: </span>
                         <select name="Languages" method="GET">
                             <option value="{{ Languages[0] }}" selected>{{ Languages[0] }}</option>
                             {% for Language in Languages[1:] %}
                                 <option value="{{ Language }}">{{ Language }}</option>
                             {% endfor %}
-                            
                         </select>
                         {% for row in row_data %}
                                 {% for col, row_ in zip(column_names, row) %}
@@ -31,7 +30,7 @@
                     </div>
                     </p>
                     <p>
-                        <center><input type="submit"></center> 
+                        <center><input type="submit" class="btn btn-outline-secondary"></center> 
                     </p>
             </form>
         
@@ -47,23 +46,23 @@
             {% endif %}
            
             {% if col == name_column %}
-            <na4>{{row_}}</na4>
+            <h3><span style="font-weight:750">{{row_}}</span></h3>
             {% endif %}
 
             {% if col == description_column %}
-            <h5>{{row_}}</h5>
+            <h6><span style="font-weight:800">Description: </span><br><br>{{row_}}</h6>
             {% endif %}
 
             {% if col == Domain_coulum %}
-            <h5>Business Domain: {{row_}}</h5>
+            <h5><span style="font-weight:800">Business Domain: </span>{{row_}}</h5>
             {% endif %}
 
             {% if col == ApplicationCategory_column %}
-            <h5>Application Category: {{row_}}</h5>
+            <h5><span style="font-weight:800">Application Category: </span> {{row_}}</h5>
             {% endif %}
 
             {% if col == Re_invoicing_column %}
-            <h5>Re-invoicing: {{row_}}</h5>
+            <h5><span style="font-weight:800">Re-invoicing: </span>{{row_}}</h5>
             {% endif %}
 
             <!--{% if col == Abstract_en_column %}
@@ -81,14 +80,17 @@
             {% if col == Abstract_fr_column %}
             <h5>{{row_}}</h5>
             {% endif %}-->
-
+            
+            <div class="buttonOrder">
             {% if col == name_column %}
             <form action="confirmation" method="post">
+            <br>
                 <button type="submit" class="btn btn-outline-primary" value="{{ row_ }}", name="software_name">
                    Order {{ row_ }}
                 </button>
-            </form>
+            </form>            
             {% endif %}
+            </div>
 
             {% endfor %}
         </div>
